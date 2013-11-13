@@ -13,10 +13,10 @@
   <form method="POST" action="login">
    <table>
     <tr><td align="center">Username</td>
-    	<td align="center"><input type="text" name="username" size="15" /></td>
+    	<td align="center"><input type="text" name="username" size="20" maxlength="16"/></td>
     </tr> 
 	<tr><td align="center">Password</td>
-		<td align="center"><input type="password" name="password" size="15" /></td>
+		<td align="center"><input type="password" name="password" size="20" maxlength="16"/></td>
 	</tr> 
 	<tr><td></td>
 		<td><div align="center"><input type="submit" value="LOGIN" /></div></td>
