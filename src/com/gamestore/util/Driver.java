@@ -3,7 +3,6 @@
  * or manipulate database schema.
  */
 package com.gamestore.util;
-
 import java.sql.Connection;
 import java.sql.Statement;
 import java.util.Scanner;
