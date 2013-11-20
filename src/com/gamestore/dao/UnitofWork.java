@@ -1,6 +1,7 @@
 package com.gamestore.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Assert;
@@ -49,8 +50,44 @@ public class UnitofWork {
 		}
 	}
 	
+	
+	
 	public void registerClean(DomainObject obj) {
 		Assert.assertNotNull("id not null", obj.getID());
+	}
+	
+	public void commit() 
+	{
+		insertNew();
+		updateDirty();
+		deleteRemoved();
+		newObjects.clear();
+		dirtyObjects.clear();
+		removedObjects.clear();
+	}
+	
+	private void insertNew() {
+		for (Iterator objects = newObjects.iterator(); objects.hasNext();) {
+			DomainObject obj = (DomainObject) objects.next();
+			
+		}
+	}
+	
+	private void updateDirty() {
+		for (Iterator objects = dirtyObjects.iterator(); objects.hasNext();) {
+			DomainObject obj = (DomainObject) objects.next();
+			
+		}
+	}
+	
+	private void deleteRemoved() {
+		for (Iterator objects = removedObjects.iterator(); objects.hasNext();) {
+			DomainObject obj = (DomainObject) objects.next();
+		
+		}
+	}
+	public List<DomainObject> getAllNew() {
+		return this.newObjects;
 	}
 
 }
