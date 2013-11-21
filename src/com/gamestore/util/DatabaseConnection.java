@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
@@ -15,6 +16,8 @@ import com.jcraft.jsch.Session;
 
 public class DatabaseConnection 
 {
+	
+	private static Connection connection;
 	static 
 	{
 		String driverName = "com.mysql.jdbc.Driver";
@@ -29,7 +32,7 @@ public class DatabaseConnection
 
 	public static Connection getConnection() 
 	{
-		Connection connection = null;
+		connection = null;
 		// SSH CONNECTION SETTINGS TO LOG IN TO CONCORDIA
 		Properties prop = new Properties();
         InputStream inputStream = DatabaseConnection.class.getClassLoader().getResourceAsStream("encs.properties");
@@ -143,5 +146,46 @@ public class DatabaseConnection
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public ResultSet ExecuteQuery (String query) {
+		ResultSet result = null;
+		try {
+			Statement st = connection.createStatement();
+			result = st.executeQuery(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+	
+	public void Execute (String query) {
+		try {
+			Statement st = connection.createStatement();
+			st.execute(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public int ExecuteInsert (String query) {
+		ResultSet result = null;
+		int id = -1;
+		try {
+			Statement st = connection.createStatement();
+			st.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			result = st.getGeneratedKeys();
+			result.next();
+			id =  result.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return id;
+		
 	}
 }

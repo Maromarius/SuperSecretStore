@@ -1,7 +1,5 @@
 package com.gamestore.model;
 
-import org.junit.Assert;
-
 import com.gamestore.dao.UnitofWork;
 
 public class DomainObject {
@@ -14,7 +12,6 @@ public class DomainObject {
 		return ID;
 	}
 	public void setID(int ID) {
-		Assert.assertNotNull("Cannot set a null ID", ID);
 		this.ID = ID;
 	}
 	public DomainObject(int ID) {
