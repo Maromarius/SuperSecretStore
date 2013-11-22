@@ -1,4 +1,4 @@
-package com.gamestore.dao;
+package com.gamestore.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

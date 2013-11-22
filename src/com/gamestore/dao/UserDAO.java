@@ -1,5 +1,7 @@
 package com.gamestore.dao;
 
+import com.gamestore.model.User;
+
 public class UserDAO extends DAO<User>
 {
 	public UserDAO() 
