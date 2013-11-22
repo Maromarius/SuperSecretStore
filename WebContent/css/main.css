@@ -169,6 +169,7 @@ h3 {
 	color: #fff; 
 }
 
+
 /* screenshots */
 #screenshots { clear: both; position: relative; margin: 0 0 40px; }
 #screenshots .scrollable { position:relative; overflow:hidden; width: 800px; height:113px; }
@@ -241,6 +242,10 @@ h3 {
 .items {
 	
 	
+}
+
+.cartitem{
+	float:left;
 }
 
 .item {

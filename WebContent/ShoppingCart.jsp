@@ -66,10 +66,53 @@
 		<!-- /pitch -->
 		
 		
-		<div id="items">
-		<!-- List All items to be listed here -->
+		<table>
+			<tr  height="30">
+				<th width="30" align="left">Del</th>
+				<th width="500" align="left">Item Description</th>
+				<th width="80" align="left">In Stock</th>
+				<th width="80" align="left">Part #</th>
+				<th width="15" align="left">QTY</th>
+				<th width="100" align="left">Price</th>
+			</tr>
+			
+			<tr>
+				<td align="left"><input type="checkbox"></td>
+				<td>Mass Effect 2  (XBOX 360)</td>
+				<td>In Stock</td>
+				<td>51645</td>
+				<td><input type="text" width="10"></td>
+				<td>$19.99</td>
+			</tr>
+			<tr>
+				<td align="left"><input type="checkbox"></td>
+				<td>Mass Effect 2  (XBOX 360)</td>
+				<td>In Stock</td>
+				<td>51645</td>
+				<td><input type="text" width="10"></td>
+				<td>$19.99</td>
+			</tr>
+			<tr >
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td align="center">Total</td>
+				<td>$38.98</td>
+			</tr>
+			<tr>
+				<td><a class="more" href="UpdateCart">Update</a></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><a class="more" href="CheckoutCart">Checkout</a></td>
+			</tr>
 		
-		</div>
+		</table>
+			
+		
+		
 		
 		
 		
