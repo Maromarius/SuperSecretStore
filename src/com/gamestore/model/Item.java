@@ -7,10 +7,10 @@ public class Item extends DomainObject{
 	private int quantity;
 	private String description;
 	private String imgUrl;
-	private int platform;
+	private Platform platform;
 	private int type;
 	
-	public Item(int ID, String name, double price, int quantity, String description, String imgUrl, int platform, int type) {
+	public Item(int ID, String name, double price, int quantity, String description, String imgUrl, Platform platform, int type) {
 		super(ID, Status.CLEAN);
 		this.name = name;
 		this.price = price;
@@ -61,11 +61,11 @@ public class Item extends DomainObject{
 		this.imgUrl = imgUrl;
 	}
 
-	public int getPlatform() {
+	public Platform getPlatform() {
 		return platform;
 	}
 
-	public void setPlatform(int platform) {
+	public void setPlatform(Platform platform) {
 		this.platform = platform;
 	}
 
