@@ -4,12 +4,12 @@ import com.gamestore.model.User;
 
 public class UserDAO extends DAO<User>
 {
+	private static UserDAO instance = null;
+	
 	public UserDAO() 
 	{
 		super("User", "UserID", User.class);
 	}
-
-	private static UserDAO instance = null;
 	
 	public static UserDAO getInstance() 
 	{

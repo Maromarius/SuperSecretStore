@@ -1,7 +1,10 @@
 package com.gamestore.model;
 
-public class Item extends DomainObject{
-	
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class Item extends DomainObject
+{	
 	private String name;
 	private double price;
 	private int quantity;
@@ -9,6 +12,7 @@ public class Item extends DomainObject{
 	private String imgUrl;
 	private Platform platform;
 	private int type;
+	private int id;
 	
 	public Item(int ID, String name, double price, int quantity, String description, String imgUrl, Platform platform, int type) {
 		super(ID, Status.CLEAN);
@@ -19,6 +23,24 @@ public class Item extends DomainObject{
 		this.imgUrl = imgUrl;
 		this.platform = platform;
 		this.type = type;
+	}
+	
+	public Item(ResultSet rs)
+	{
+		try 
+		{
+			this.id = rs.getInt("ItemID");
+			this.name = rs.getString("name");
+			this.price = rs.getDouble("price");
+			this.quantity = rs.getInt("quantity");
+			this.description = rs.getString("description");
+			this.imgUrl = rs.getString("imgURL");
+			//this.platform = rs.getPlatform("platform");
+			this.type = rs.getInt("type");
+		} catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public String getName() {
@@ -76,9 +98,17 @@ public class Item extends DomainObject{
 	public void setType(int type) {
 		this.type = type;
 	}
-	
-	
-	
-	
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String toString()
+	{
+		return (name + " " + price + " " + quantity + " " + description);
+	}
 }

@@ -51,6 +51,10 @@
 		<div id="top">
 			<h1 id="logo"><a href="#">Game<span>Store</span></a></h1>
 			<ul id="menu">
+				<li><a href="#">Manage Inventory</a></li>
+				<li><a href="HomePage.jsp">Home</a></li>
+				<li><a href="ItemListViewer.jsp">Products</a></li>
+				<li><a href="#">Shopping Cart</a></li>
 				<li><a class="current" href="Login.jsp">Login</a></li>
 			</ul>
 		</div>
@@ -94,7 +98,7 @@
 			   </table>
 				<p></p>
 				<p>Please login here.</p>
-				<p><a class="more" href="#">
+				<p><a class="more">
 					<input type="submit" value="Submit" />
 				</a></p>
 				 </form>

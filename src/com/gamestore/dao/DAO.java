@@ -1,7 +1,6 @@
 package com.gamestore.dao;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,7 +41,7 @@ public class DAO <E>
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next())
 			{
-		        Constructor constructor = clazz.getDeclaredConstructor(ResultSet.class);
+		        Constructor<E> constructor = clazz.getDeclaredConstructor(ResultSet.class);
 		        E record = (E) constructor.newInstance(resultSet);
 		        return record;	
 			}
@@ -50,17 +49,7 @@ public class DAO <E>
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
-		} catch (NoSuchMethodException e){
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -81,7 +70,7 @@ public class DAO <E>
 				resultSet = preparedStatement.executeQuery();
 				while (resultSet.next())
 				{
-			        Constructor constructor = clazz.getDeclaredConstructor(ResultSet.class);
+			        Constructor<E> constructor = clazz.getDeclaredConstructor(ResultSet.class);
 			        E record = (E) constructor.newInstance(resultSet);
 			        entries.put(id, record);
 				}
@@ -89,17 +78,7 @@ public class DAO <E>
 		} 
 		catch (SQLException e){
 			e.printStackTrace();
-		} catch (InstantiationException e){
-			e.printStackTrace();
-		} catch (IllegalAccessException e){
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (SecurityException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return entries;
