@@ -1,7 +1,5 @@
 package com.gamestore.dao;
 
-import java.util.HashMap;
-
 import com.gamestore.model.Item;
 
 public class ItemDAO extends DAO<Item>
@@ -36,13 +34,5 @@ public class ItemDAO extends DAO<Item>
 				+ "`platform`, `type`) VALUES ('"+name+"', '"+price+"', '"+quantity+"', '"+description+"', "
 						+ "'"+imgURL+"', '"+platform+"', '"+type+"');";
 		return executeSQLStatement(sql);
-	}
-	
-	public static void main (String[]args)
-	{
-		ItemDAO dao = new ItemDAO();
-		HashMap<Integer, Item> items = dao.findAll();
-		for (Integer i : items.keySet())
-			System.out.println(items.get(i));
 	}
 }

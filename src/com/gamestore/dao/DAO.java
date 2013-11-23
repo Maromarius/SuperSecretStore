@@ -33,12 +33,11 @@ public class DAO <E>
 	
 	public E find(int recordId) 
 	{
-		ResultSet resultSet = null;
 		String sql = "SELECT * FROM "+tableName+" WHERE "+idName+"="+recordId+";";
 		try 
 		{
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			resultSet = preparedStatement.executeQuery();
+			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet.next())
 			{
 		        Constructor<E> constructor = clazz.getDeclaredConstructor(ResultSet.class);
@@ -54,26 +53,20 @@ public class DAO <E>
 		}
 		return null;
 	}
-	
+
 	public HashMap<Integer, E> findAll() 
 	{
 		HashMap<Integer, E> entries = new HashMap<Integer,E>();
-		String sql = "SELECT * FROM "+tableName+" WHERE "+idName+"=?";
-		ResultSet resultSet = null;
+		String sql = "SELECT * FROM "+tableName;
 		try 
 		{
-			ArrayList<Integer> idList = getAllIds();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			for (Integer id : idList)
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next())
 			{
-				preparedStatement.setInt(1, id);
-				resultSet = preparedStatement.executeQuery();
-				while (resultSet.next())
-				{
-			        Constructor<E> constructor = clazz.getDeclaredConstructor(ResultSet.class);
-			        E record = (E) constructor.newInstance(resultSet);
-			        entries.put(id, record);
-				}
+		        Constructor<E> constructor = clazz.getDeclaredConstructor(ResultSet.class);
+		        E record = (E) constructor.newInstance(resultSet);
+		        entries.put(resultSet.getInt(idName), record);
 			}
 		} 
 		catch (SQLException e){
@@ -103,10 +96,9 @@ public class DAO <E>
 	
 	protected boolean executeSQLStatement(String sql)
 	{
-		Statement statement = null;
 		try 
 		{
-			statement = connection.createStatement();
+			Statement statement = connection.createStatement();
 			statement.execute(sql);
 			return true; // successful operation
 		} 

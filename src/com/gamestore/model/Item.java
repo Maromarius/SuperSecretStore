@@ -109,6 +109,6 @@ public class Item extends DomainObject
 	
 	public String toString()
 	{
-		return (name + " " + price + " " + quantity + " " + description);
+		return (id + " " + name + " " + price + " " + quantity + " " + description);
 	}
 }
