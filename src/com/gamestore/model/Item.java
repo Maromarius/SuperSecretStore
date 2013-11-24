@@ -42,6 +42,15 @@ public class Item extends DomainObject
 			e.printStackTrace();
 		}
 	}
+	public String getPlatformName()
+	{
+		String platName = "XBOX";
+		return platName;
+	}
+	public boolean Contains(String searchString)
+	{
+		return this.name.toLowerCase().contains(searchString.toLowerCase())|| this.description.toLowerCase().contains(searchString.toLowerCase()); 
+	}
 
 	public String getName() {
 		return name;

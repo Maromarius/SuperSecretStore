@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%> 
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.gamestore.controller.SearchServlet"%>
+<%@page import="com.gamestore.model.Item"%>
+<%@page import="java.util.Iterator"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -65,10 +70,34 @@
 		</div>
 		<!-- /pitch -->
 		
-		<div class="items">
-		<!-- List All items to be listed here -->
+		<!-- search bar -->
+		<div class="search">
+			<form action="SearchServlet"  method="get" id="search">
+			 	<input name="searchQuery" type="text" size="65" value="Search..."  />
+			</form>
+		</div>
+		<!--/ search bar -->
 		
-			
+		
+		
+		<div class="items">
+		
+		<!-- List All items to be listed here, get the value "itemsToDisplay" from session attributes -->
+		
+		<%
+			ArrayList<Item> itemsToDisplay = (ArrayList<Item>) session.getAttribute("itemsToDisplay");
+			for(Iterator<Item> i = itemsToDisplay.iterator(); i.hasNext(); ) {
+			    Item item = i.next();
+			    %>
+			    <div class="item">
+					<h3><%=item.getName() %></h3><h4>(<%=item.getPlatformName()%>)</h4>
+					<p><img src="<%=item.getImgUrl() %>" height="226.6666666" width="160"></p>
+					<p><h3>$<%=item.getPrice() %></h3></p>
+					<p><a class="more" href="#">Add to Cart</a></p>
+				</div>
+		<% 
+		}
+		%>
 			<div class="item">
 				<h3>Mass Effect 2</h3><h4>(XBOX 360)</h4>
 				<p><img src="http://www.411mania.com/game_article_pictures/11139.jpg" height="226.6666666" width="160"></p>
