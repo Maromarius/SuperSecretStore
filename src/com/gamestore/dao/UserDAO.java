@@ -19,7 +19,7 @@ public class UserDAO extends DAO<User>
 	}	
 	
 	public boolean updateUser(int id, String name, String address, String phone, 
-			int paymentType, String email, String password, boolean isAdmin)
+			String paymentType, String email, String password, boolean isAdmin)
 	{
 		String sql = "UPDATE `soen387k`.`User` SET `name`='"+name+"', `address`='"+address+"', "
 		 		+ "`phone`='"+phone+"',  `paymentType`='"+paymentType+"',  `email`='"+email+"',  "
@@ -28,7 +28,7 @@ public class UserDAO extends DAO<User>
 	}
 	
 	public boolean addUser(String name, String address, String phone, 
-			int paymentType, String email, String password, boolean isAdmin)
+			String paymentType, String email, String password, boolean isAdmin)
 	{
 		String sql = "INSERT INTO `soen387k`.`User` (`name`, `address`, `phone`, `paymentType`, `email`, `password`, `isAdmin`) "
 				+ "VALUES ('"+name+"', '"+address+"', '"+phone+"', '"+paymentType+"', '"+email+"', '"+password+"', '"+(isAdmin?1:0)+"');";

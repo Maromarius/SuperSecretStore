@@ -5,9 +5,9 @@ import java.sql.SQLException;
 
 public class User 
 {
-	private String name, address, phone, email, password;
+	private String name, address, phone, email, password, paymentType;
 	private boolean isAdmin;
-	private int id, paymentType;
+	private int id;
 	
 	public User()
 	{
@@ -22,7 +22,7 @@ public class User
 			this.name = rs.getString("name");
 			this.address = rs.getString("address");
 			this.phone = rs.getString("phone");
-			this.paymentType = rs.getInt("paymentType");
+			this.paymentType = rs.getString("paymentType");
 			this.email = rs.getString("email");
 			this.password = rs.getString("password");
 			this.isAdmin = rs.getBoolean("isAdmin");
@@ -93,11 +93,11 @@ public class User
 		this.isAdmin = isAdmin;
 	}
 
-	public int getPaymentType() {
+	public String getPaymentType() {
 		return paymentType;
 	}
 
-	public void setPaymentType(int paymentType) {
+	public void setPaymentType(String paymentType) {
 		this.paymentType = paymentType;
 	}
 	

@@ -10,11 +10,11 @@ public class Item extends DomainObject
 	private int quantity;
 	private String description;
 	private String imgUrl;
-	private Platform platform;
-	private int type;
+	private String platform;
+	private String type;
 	private int id;
 	
-	public Item(int ID, String name, double price, int quantity, String description, String imgUrl, Platform platform, int type) {
+	public Item(int ID, String name, double price, int quantity, String description, String imgUrl, String platform, String type) {
 		super(ID, Status.CLEAN);
 		this.name = name;
 		this.price = price;
@@ -35,8 +35,8 @@ public class Item extends DomainObject
 			this.quantity = rs.getInt("quantity");
 			this.description = rs.getString("description");
 			this.imgUrl = rs.getString("imgURL");
-			//this.platform = rs.getPlatform("platform");
-			this.type = rs.getInt("type");
+			this.platform = rs.getString("platform");
+			this.type = rs.getString("type");
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();
@@ -83,19 +83,19 @@ public class Item extends DomainObject
 		this.imgUrl = imgUrl;
 	}
 
-	public Platform getPlatform() {
+	public String getPlatform() {
 		return platform;
 	}
 
-	public void setPlatform(Platform platform) {
+	public void setPlatform(String platform) {
 		this.platform = platform;
 	}
 
-	public int getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

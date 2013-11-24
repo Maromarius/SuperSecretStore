@@ -19,7 +19,7 @@ public class ItemDAO extends DAO<Item>
 	}
 	
 	public boolean updateItem(int id, String name, double price, int quantity, 
-			String description, String imgURL, int platform, int type)
+			String description, String imgURL, String platform, String type)
 	{
 		String sql = "UPDATE `soen387k`.`Item` SET `name`='"+name+"', `price`='"+price+"', "
 		 		+ "`quantity`='"+quantity+"', `description`='"+description+"', `imgURL`='"+imgURL+"',  "
@@ -28,7 +28,7 @@ public class ItemDAO extends DAO<Item>
 	}
 	
 	public boolean addItem(String name, double price, int quantity, String description, String imgURL, 
-			int platform, int type)
+			String platform, String type)
 	{
 		String sql = "INSERT INTO `soen387k`.`Item` (`name`, `price`, `quantity`, `description`, `imgURL`, "
 				+ "`platform`, `type`) VALUES ('"+name+"', '"+price+"', '"+quantity+"', '"+description+"', "
