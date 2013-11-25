@@ -18,7 +18,7 @@ public class UserDAO extends DAO<User>
 		return instance;
 	}	
 	
-	public boolean updateUser(int id, String name, String address, String phone, 
+	public boolean update(int id, String name, String address, String phone, 
 			String paymentType, String email, String password, boolean isAdmin)
 	{
 		String sql = "UPDATE `soen387k`.`User` SET `name`='"+name+"', `address`='"+address+"', "
@@ -27,7 +27,7 @@ public class UserDAO extends DAO<User>
 		return executeSQLStatement(sql);
 	}
 	
-	public boolean addUser(String name, String address, String phone, 
+	public boolean add(String name, String address, String phone, 
 			String paymentType, String email, String password, boolean isAdmin)
 	{
 		String sql = "INSERT INTO `soen387k`.`User` (`name`, `address`, `phone`, `paymentType`, `email`, `password`, `isAdmin`) "

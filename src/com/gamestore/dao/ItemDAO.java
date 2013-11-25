@@ -18,7 +18,7 @@ public class ItemDAO extends DAO<Item>
 		return instance;
 	}
 	
-	public boolean updateItem(int id, String name, double price, int quantity, 
+	public boolean update(int id, String name, double price, int quantity, 
 			String description, String imgURL, String platform, String type)
 	{
 		String sql = "UPDATE `soen387k`.`Item` SET `name`='"+name+"', `price`='"+price+"', "
@@ -27,7 +27,7 @@ public class ItemDAO extends DAO<Item>
 		return executeSQLStatement(sql);
 	}
 	
-	public boolean addItem(String name, double price, int quantity, String description, String imgURL, 
+	public boolean add(String name, double price, int quantity, String description, String imgURL, 
 			String platform, String type)
 	{
 		String sql = "INSERT INTO `soen387k`.`Item` (`name`, `price`, `quantity`, `description`, `imgURL`, "

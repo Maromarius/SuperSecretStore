@@ -38,8 +38,7 @@ public class LoginServlet extends HttpServlet {
 	{
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		LoginService ls = new LoginService();
-		if (ls.authenticateUser(username, password))
+		if (LoginService.getInstance().authenticateUser(username, password))
 		{
 			request.getSession().setAttribute("username", username);
 			request.getRequestDispatcher("/HomePage.jsp").forward(request, response);
