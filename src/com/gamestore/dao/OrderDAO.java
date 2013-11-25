@@ -37,20 +37,34 @@ public class OrderDAO extends DAO<Order>
 		return executeSQLStatement(sql);
 	}
 	
-	// get list of ordered items & their details for a given Order based on the OrderID (order number)
-	public HashMap<Integer, Item> getOrderDetails(int id) 
+	/*
+	 *  Get list of items (with their details) for a given Order based on the OrderID (order number).
+	 *  The key for this mapping is the quantity ordered, and the values are implemented as buckets
+	 *  with the ordered Item objects as entries. 
+	 */
+	public HashMap<Integer, ArrayList<Item>> getOrderDetails(int id) 
 	{
-		HashMap<Integer, Item> orderDetails = new HashMap<Integer, Item>();
-		try 
-		{
+		HashMap<Integer, ArrayList<Item>> orderDetails = new HashMap<Integer, ArrayList<Item>>();
+		try {
            Statement statement = getConnection().createStatement();
-           ResultSet resultSet = statement.executeQuery("SELECT * FROM OrderedItem, Item "
-           		+ "WHERE OrderedItem.itemID=Item.ItemID AND OrderedItem.orderId="+id+";");
+           ResultSet resultSet = statement.executeQuery("SELECT Item.ItemID, name, price, Item.quantity, description, "
+           		+ "imgURL, platform, type, OrderedItem.quantity AS q "
+           		+ "FROM OrderedItem, Item Where OrderedItem.itemID=Item.ItemID AND orderId="+id+";");
            while (resultSet.next()) 
-        	   orderDetails.put(resultSet.getInt("OrderID"));
+           {
+        	   int quantityOrdered = resultSet.getInt("q");
+        	   ArrayList<Item> list = orderDetails.get(quantityOrdered);
+        	   if (list == null)
+        	   {
+        		   list = new ArrayList<Item>();
+        		   orderDetails.put(quantityOrdered, list);
+        	   }
+        	   Item i = new Item(resultSet);
+        	   list.add(i);
+        	   orderDetails.put(resultSet.getInt("q"), list);
+           }
 		}
-		catch(SQLException e)
-		{
+		catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return orderDetails;

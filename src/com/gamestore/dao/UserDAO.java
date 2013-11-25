@@ -43,15 +43,13 @@ public class UserDAO extends DAO<User>
 	public ArrayList<Integer> getOrderList(int id) // get a User's list of orders based on his/her UserID (record ID)
 	{
 		ArrayList<Integer> orderList = new ArrayList<Integer>();
-		try 
-		{
+		try {
            Statement statement = getConnection().createStatement();
            ResultSet resultSet = statement.executeQuery("SELECT OrderID FROM soen387k.Order WHERE Order.userID="+id+";");
            while (resultSet.next()) 
         	   orderList.add(resultSet.getInt("OrderID"));
 		}
-		catch(SQLException e)
-		{
+		catch(SQLException e){
 			e.printStackTrace();
 		}
 		return orderList;
