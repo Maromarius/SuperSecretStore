@@ -9,7 +9,7 @@
 <body>
     <center>
         <h1>Add Item</h1>
-        <form name="AddItemServlet">
+        <form action="AddItemServlet">
         <table>
             <tr>
                 <td align="right">Name :</td>

@@ -3,7 +3,7 @@ package com.gamestore.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Order 
+public class Order extends DomainObject
 {
 	private int id, userID;
 	

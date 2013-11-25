@@ -70,7 +70,6 @@ public class UnitofWork {
 		for (Iterator objects = newObjects.iterator(); objects.hasNext();) {
 			DomainObject obj = (DomainObject) objects.next();
 			
-			
 		}
 	}
 	

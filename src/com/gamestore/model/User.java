@@ -3,7 +3,7 @@ package com.gamestore.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class User 
+public class User extends DomainObject
 {
 	private String name, address, phone, email, password, paymentType;
 	private boolean isAdmin;
