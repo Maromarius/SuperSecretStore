@@ -16,7 +16,7 @@ import com.jcraft.jsch.Session;
 
 public class DatabaseConnection 
 {
-	
+	private static int port = 3334;
 	private static Connection connection;
 	static 
 	{
@@ -48,7 +48,7 @@ public class DatabaseConnection
 		String sshHost = "login.encs.concordia.ca"; 
 		int nSshPort = 22; // remote SSH host port number
 		String strRemoteHost = "clipper.encs.concordia.ca"; // Host-name of database server
-		int nLocalPort = 3334; //int nLocalPort = findUnusedPort(); // local port number use to bind SSH
+		int nLocalPort = port++; //int nLocalPort = findUnusedPort(); // local port number use to bind SSH
 		// tunnel
 		int nRemotePort = 3306; // remote port number of your database
 		final JSch jsch = new JSch();

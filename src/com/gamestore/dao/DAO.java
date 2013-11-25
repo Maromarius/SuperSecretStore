@@ -27,7 +27,7 @@ public class DAO <E>
 	
 	public boolean delete(int recordId) 
 	{
-		 String sql = "DELETE FROM `soen387k`.`"+tableName+"` WHERE `"+idName+"`='"+recordId+"';";
+		 String sql = "DELETE FROM "+tableName+" WHERE "+idName+"="+recordId+";";
 		 return executeSQLStatement(sql);
 	}
 	

@@ -1,5 +1,10 @@
 package com.gamestore.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 import com.gamestore.model.User;
 
 public class UserDAO extends DAO<User>
@@ -33,5 +38,22 @@ public class UserDAO extends DAO<User>
 		String sql = "INSERT INTO `soen387k`.`User` (`name`, `address`, `phone`, `paymentType`, `email`, `password`, `isAdmin`) "
 				+ "VALUES ('"+name+"', '"+address+"', '"+phone+"', '"+paymentType+"', '"+email+"', '"+password+"', '"+(isAdmin?1:0)+"');";
 		return executeSQLStatement(sql);
+	}
+	
+	public ArrayList<Integer> getOrderList(int id) // get a User's list of orders based on his/her UserID (record ID)
+	{
+		ArrayList<Integer> orderList = new ArrayList<Integer>();
+		try 
+		{
+           Statement statement = getConnection().createStatement();
+           ResultSet resultSet = statement.executeQuery("SELECT OrderID FROM soen387k.Order WHERE Order.userID="+id+";");
+           while (resultSet.next()) 
+        	   orderList.add(resultSet.getInt("OrderID"));
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return orderList;
 	}
 }
