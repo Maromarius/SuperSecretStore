@@ -40,6 +40,8 @@ public class AddItemServlet extends HttpServlet {
 		item.setQuantity(Integer.parseInt(request.getParameter("itemQuantity")));
 		
 		ItemDAO.getInstance().addbyObject(item);
+		item =null;
+		response.sendRedirect("AddInventory.jsp");
 		
 		
 	}
