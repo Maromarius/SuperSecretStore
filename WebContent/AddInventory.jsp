@@ -9,7 +9,7 @@
 <body>
     <center>
         <h1>Add Item</h1>
-        <form name="AddItemForm">
+        <form name="AddItemServlet">
         <table>
             <tr>
                 <td align="right">Name :</td>
@@ -41,8 +41,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="middle">
-                    <input  type="submit" value="Add Item">
-                    <input type="button" value="Cancel">
+                    <input  type="submit" value="Add Item">             
                 </td>
             </tr>
         </table>

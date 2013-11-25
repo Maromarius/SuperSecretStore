@@ -42,6 +42,10 @@ public class Item extends DomainObject
 			e.printStackTrace();
 		}
 	}
+	public Item() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getPlatformName()
 	{
 		return platform.toString();

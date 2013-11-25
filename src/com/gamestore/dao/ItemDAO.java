@@ -35,4 +35,12 @@ public class ItemDAO extends DAO<Item>
 						+ "'"+imgURL+"', '"+platform+"', '"+type+"');";
 		return executeSQLStatement(sql);
 	}
+	
+	public boolean addbyObject(Item item)
+	{
+		String sql = "INSERT INTO `soen387k`.`Item` (`name`, `price`, `quantity`, `description`, `imgURL`, "
+				+ "`platform`, `type`) VALUES ('"+item.getName()+"', '"+item.getPrice()+"', '"+item.getQuantity()+"', '"+item.getDescription()+"', "
+						+ "'"+item.getImgUrl()+"', '"+item.getPlatform()+"', '"+item.getType()+"');";
+		return executeSQLStatement(sql);
+	}
 }
