@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="com.gamestore.model.Item"%>
+<%@page import="com.gamestore.model.ShoppingCart"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -75,6 +80,26 @@
 				<th width="15" align="left">QTY</th>
 				<th width="100" align="left">Price</th>
 			</tr>
+			
+			<%
+				ShoppingCart cart = (ShoppingCart) session.getAttribute("ShoppingCart");
+				for(Iterator<Item> i = cart.getList().iterator(); i.hasNext(); ) {
+			    	Item item = i.next();
+			    %>
+			    <tr>
+				<td align="left"><input type="checkbox"></td>
+				<td><%=item.getName()%> (<%=item.getPlatformName()%>)</td>
+				<td><%=item.getStockStatus() %></td>
+				<td><%=item.getID()%></td>
+				<td>
+					<input type="text" name="gamequantity" value="<%=item.getID()%>" type="hidden">
+					<input type="text" name="gamequantitytextbox" value="<%=item.getID()%>" width="10">
+				</td>
+				<td>$<%=item.getPrice()%></td>
+			</tr>
+			<%
+				}
+			%>
 			
 			<tr>
 				<td align="left"><input type="checkbox"></td>

@@ -116,6 +116,11 @@ public class Item extends DomainObject
 		this.id = id;
 	}
 	
+	public String getStockStatus()
+	{
+		return "In Stock";
+	}
+	
 	public String toString()
 	{
 		return (id + " " + name + " " + price + " " + quantity + " " + description);

@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%> 
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="com.gamestore.controller.SearchServlet"%>
 <%@page import="com.gamestore.model.Item"%>
-<%@page import="java.util.Iterator"%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -35,14 +36,6 @@
 	</script>
 	<script type="text/javascript" src="js/pitch.js"></script>
 	<script type="text/javascript">
-		/* 
-		
-		COUNTDOWN
-		-------------------------------------------------------------------
-		replace UTC with your time zone (eg. UTC+01 for Paris)
-		list of time zone codes: http://en.wikipedia.org/wiki/Time_zone#UTC
-		
-		*/
 		Counter(new Date("Oct 20 2012 12:00:00 UTC"));
 		var done_message = "Game On!";
 	</script>
