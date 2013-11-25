@@ -51,10 +51,10 @@
 		<div id="top">
 			<h1 id="logo"><a href="#">Game<span>Store</span></a></h1>
 			<ul id="menu">
-				<li><a href="#">Manage Inventory</a></li>
+				<li><a href="ManageInventory.jsp">Manage Inventory</a></li>
 				<li><a href="HomePage.jsp">Home</a></li>
 				<li><a href="ItemListViewer.jsp">Products</a></li>
-				<li><a href="#">Shopping Cart</a></li>
+				<li><a href="ShoppingCart.jsp">Shopping Cart</a></li>
 				<li><a class="current" href="Login.jsp">Login</a></li>
 			</ul>
 		</div>

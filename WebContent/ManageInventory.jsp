@@ -52,9 +52,9 @@
 			<h1 id="logo"><a href="#">Game<span>Store</span></a></h1>
 			<ul id="menu">
 				<li><a class="current" href="#">Manage Inventory</a></li>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Products</a></li>
-				<li><a href="#">Shopping Cart</a></li>
+				<li><a href="HomePage.jsp">Home</a></li>
+				<li><a href="ItemListViewer.jsp">Products</a></li>
+				<li><a href="ShoppingCart.jsp">Shopping Cart</a></li>
 			</ul>
 		</div>
 		<!-- /top -->
