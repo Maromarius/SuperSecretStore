@@ -49,7 +49,7 @@ public class AddToShoppingCartServlet extends HttpServlet {
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("ShoppingCart");
 		cart.Add(ItemContainer.getInstance().Get(itemID));
 		session.setAttribute("ShoppingCart", cart);
-		response.sendRedirect("ShoppingCart.jsp");
+		response.sendRedirect("ItemListViewer.jsp");
 		
 	}
 

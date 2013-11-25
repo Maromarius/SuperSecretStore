@@ -5,6 +5,8 @@
 <%@page import="com.gamestore.controller.SearchServlet"%>
 <%@page import="com.gamestore.controller.AddToShoppingCartServlet"%>
 <%@page import="com.gamestore.model.Item"%>
+<%@page import="com.gamestore.model.ItemContainer"%>
+<%@page import="com.gamestore.model.ShoppingCart"%>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -52,8 +54,16 @@
 			<ul id="menu">
 				<li><a href="#">Manage Inventory</a></li>
 				<li><a href="HomePage.jsp">Home</a></li>
-				<li><a class="current" href="#">Products</a></li>
-				<li><a href="#">Shopping Cart</a></li>
+				<li><a class="current" >Products</a></li>
+				<li><a href="ShoppingCart.jsp">Shopping Cart
+				<%
+				if(session.getAttribute("ShoppingCart") != null)
+				{
+					ShoppingCart cart = (ShoppingCart) session.getAttribute("ShoppingCart");
+					if(cart.getList().size()>0)
+						out.print(" ("+cart.getList().size()+")");
+				}
+				%></a></li>
 			</ul>
 		</div>
 		<!-- /top -->
@@ -79,9 +89,12 @@
 		<!-- List All items to be listed here, get the value "itemsToDisplay" from session attributes -->
 		
 		<%
-			ArrayList<Item> itemsToDisplay = (ArrayList<Item>) session.getAttribute("itemsToDisplay");
-		if(itemsToDisplay !=null)
+		ArrayList<Item> itemsToDisplay = new ArrayList<Item>();
+		itemsToDisplay = (ArrayList<Item>) session.getAttribute("itemsToDisplay");
+		if(itemsToDisplay == null)
 		{
+			itemsToDisplay = ItemContainer.getInstance().GetAllItems();
+		}
 			for(Iterator<Item> i = itemsToDisplay.iterator(); i.hasNext(); ) {
 			    Item item = i.next();
 			    %>
@@ -95,49 +108,9 @@
 					</form>
 				</div>
 		<% 
-			}
 		}
 		%>
-			<div class="item">
-				<form action="AddToShoppingCartServlet" method="get">
-					<h3>Mass Effect 2</h3><h4>(XBOX 360)</h4>
-					<p><img src="http://www.411mania.com/game_article_pictures/11139.jpg" height="226.6666666" width="160"></p>
-					<p><h3>$19.99</h3></p>
-					<p><input class="addtocartbutton" type="submit"  value="Add to Cart" /></p>
-				</form>
-			</div>	
-			<div class="item">
-				<form action="AddToShoppingCartServlet" method="get">
-					<h3>Mass Effect 2</h3><h4>(XBOX 360)</h4>
-					<p><img src="http://www.411mania.com/game_article_pictures/11139.jpg" height="226.6666666" width="160"></p>
-					<p><h3>$19.99</h3></p>
-					<p><input class="addtocartbutton" type="submit"  value="Add to Cart" /></p>
-				</form>
-			</div>	
-			<div class="item">
-				<form action="AddToShoppingCartServlet" method="get">
-					<h3>Mass Effect 2</h3><h4>(XBOX 360)</h4>
-					<p><img src="http://www.411mania.com/game_article_pictures/11139.jpg" height="226.6666666" width="160"></p>
-					<p><h3>$19.99</h3></p>
-					<p><input class="addtocartbutton" type="submit"  value="Add to Cart" /></p>
-				</form>
-			</div>	
-			<div class="item">
-				<form action="AddToShoppingCartServlet" method="get">
-					<h3>Mass Effect 2</h3><h4>(XBOX 360)</h4>
-					<p><img src="http://www.411mania.com/game_article_pictures/11139.jpg" height="226.6666666" width="160"></p>
-					<p><h3>$19.99</h3></p>
-					<p><input class="addtocartbutton" type="submit"  value="Add to Cart" /></p>
-				</form>
-			</div>	
-			<div class="item">
-				<form action="AddToShoppingCartServlet" method="get">
-					<h3>Mass Effect 2</h3><h4>(XBOX 360)</h4>
-					<p><img src="http://www.411mania.com/game_article_pictures/11139.jpg" height="226.6666666" width="160"></p>
-					<p><h3>$19.99</h3></p>
-					<p><input class="addtocartbutton" type="submit"  value="Add to Cart" /></p>
-				</form>
-			</div>		
+			
 		</div>
 		
 		<!-- footer -->

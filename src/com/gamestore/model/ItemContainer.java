@@ -1,16 +1,19 @@
 package com.gamestore.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class ItemContainer {
 
 	private static ItemContainer itemContainer;
-	private ArrayList<Item> items;
+	private ArrayList<Integer> itemIds;
+	HashMap<Integer,Item> itemMap;
 	
 	private ItemContainer()
 	{
-		items = new ArrayList<Item>();
+		itemIds = new ArrayList<Integer>();
+		itemMap = new HashMap<Integer,Item>();
 	}
 	
 	public static ItemContainer getInstance()
@@ -22,44 +25,44 @@ public class ItemContainer {
 	
 	public void Add(Item item)
 	{
-		items.add(item);
+		itemIds.add(item.getId());
+		itemMap.put(item.getId(), item);
 		return;
 	}
 	
 	public Item Get(int itemID)
 	{
-		Item itemToReturn = null;
-		for(Iterator<Item> i = items.iterator(); i.hasNext(); ) {
-		    Item item = i.next();
-		    if(item.getId() == itemID)
-		    {
-		    	itemToReturn = item;
-		    	break;
-		    }	
-		}
-		return itemToReturn;
+		return itemMap.get(itemID);
 	}
 	
 	public void Remove(int itemID)
 	{
-		for(Iterator<Item> i = items.iterator(); i.hasNext(); ) {
-		    Item item = i.next();
-		    if(item.getId() == itemID)
-		    {
-		    	items.remove(item);
-		    	return;
-		    }	
-		}
+		itemIds.remove(itemMap.remove(itemID).getId());
 	}
 
 	public ArrayList<Item> Search(String searchString)
 	{
 		ArrayList<Item> results = new ArrayList<Item>();
 		
-		for(Iterator<Item> i = items.iterator(); i.hasNext(); ) {
-		    Item item = i.next();
-		    if(item.Contains(searchString))
-		    	results.add(item);
+		for(Iterator<Integer> i = itemIds.iterator(); i.hasNext(); ) {
+		    int itemId = i.next();
+		    if(itemMap.get(itemId).Contains(searchString))
+		    	results.add(itemMap.get(itemId));
+		}
+		return results;
+	}
+	public void Reset()
+	{
+		itemIds.clear();
+		itemMap.clear();
+	}
+	
+	public ArrayList<Item> GetAllItems()
+	{
+		ArrayList<Item> results = new ArrayList<Item>();
+		for(Iterator<Integer> i = itemIds.iterator(); i.hasNext(); ) {
+		    int itemId = i.next();
+		    results.add(itemMap.get(itemId));
 		}
 		return results;
 	}

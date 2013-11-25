@@ -4,6 +4,8 @@
 <%@page import="com.gamestore.model.ShoppingCart"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
+<%@page import="java.text.NumberFormat"%>
+
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -57,9 +59,16 @@
 			<h1 id="logo"><a href="#">Game<span>Store</span></a></h1>
 			<ul id="menu">
 				<li h><a href="#">Manage Inventory</a></li>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Products</a></li>
-				<li><a class="current" href="#">Shopping Cart</a></li>
+				<li><a href="HomePage.jsp">Home</a></li>
+				<li><a href="ItemListViewer.jsp">Products</a></li>
+				<li><a class="current" href="#">Shopping Cart <%
+				if(session.getAttribute("ShoppingCart") != null)
+				{
+					ShoppingCart cart = (ShoppingCart) session.getAttribute("ShoppingCart");
+					if(cart.getList().size()>0)
+						out.print(" ("+cart.getList().size()+")");
+				}
+				%></a></li>
 			</ul>
 		</div>
 		<!-- /top -->
@@ -82,48 +91,41 @@
 			</tr>
 			
 			<%
+			    double total = 0;
+				String totalString = "";
 				ShoppingCart cart = (ShoppingCart) session.getAttribute("ShoppingCart");
-				for(Iterator<Item> i = cart.getList().iterator(); i.hasNext(); ) {
+			if(cart != null)
+			{
+				
+				for(Iterator<Item> i = cart.getSetList().iterator(); i.hasNext(); ) {
 			    	Item item = i.next();
 			    %>
 			    <tr>
 				<td align="left"><input type="checkbox"></td>
 				<td><%=item.getName()%> (<%=item.getPlatformName()%>)</td>
 				<td><%=item.getStockStatus() %></td>
-				<td><%=item.getID()%></td>
+				<td><%=item.getId()%></td>
 				<td>
-					<input type="text" name="gamequantity" value="<%=item.getID()%>" type="hidden">
-					<input type="text" name="gamequantitytextbox" value="<%=item.getID()%>" width="10">
+					<input name="itemId" value="<%=item.getId()%>" type="hidden">
+					<input type="text" name="itemquantitytextbox" value="<%=cart.getCount(item.getId())%>" width="10">
 				</td>
 				<td>$<%=item.getPrice()%></td>
 			</tr>
 			<%
+				total += (item.getPrice()*cart.getCount(item.getId()));
 				}
+				NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
+				totalString = currencyFormatter.format(total);
+			}
 			%>
 			
-			<tr>
-				<td align="left"><input type="checkbox"></td>
-				<td>Mass Effect 2  (XBOX 360)</td>
-				<td>In Stock</td>
-				<td>51645</td>
-				<td><input type="text" width="10"></td>
-				<td>$19.99</td>
-			</tr>
-			<tr>
-				<td align="left"><input type="checkbox"></td>
-				<td>Mass Effect 2  (XBOX 360)</td>
-				<td>In Stock</td>
-				<td>51645</td>
-				<td><input type="text" width="10"></td>
-				<td>$19.99</td>
-			</tr>
 			<tr >
 				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td align="center">Total</td>
-				<td>$38.98</td>
+				<td><%=totalString%></td>
 			</tr>
 			<tr>
 				<td><a class="more" href="UpdateCart">Update</a></td>
@@ -135,13 +137,6 @@
 			</tr>
 		
 		</table>
-			
-		
-		
-		
-		
-		
-		
 		
 		<!-- footer -->
 		<div id="footer">

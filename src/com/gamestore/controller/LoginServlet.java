@@ -2,6 +2,8 @@ package com.gamestore.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,12 +42,16 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		if (LoginService.getInstance().authenticateUser(username, password))
 		{
+			//User authentication succeeded
 			request.getSession().setAttribute("username", username);
-			request.getRequestDispatcher("/HomePage.jsp").forward(request, response);
+			ServletContext context = this.getServletContext();
+			RequestDispatcher dispatcher = context.getRequestDispatcher("/InitiateGameStoreServlet");
+			dispatcher.forward(request, response);
 			return;
 		}
 		else
 		{
+			//User authentication failed
 			request.getSession().setAttribute("msg", new String("Invalid username &/or password."));
 			request.getRequestDispatcher("/Login.jsp").forward(request, response);
 			return;

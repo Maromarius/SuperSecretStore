@@ -98,9 +98,9 @@
 			   </table>
 				<p></p>
 				<p>Please login here.</p>
-				<p><a class="more">
+				<p>
 					<input type="submit" value="Submit" />
-				</a></p>
+				</p>
 				 </form>
 				<p><c:if test="${not empty msg}">
 			    <h4>${msg}</h4>

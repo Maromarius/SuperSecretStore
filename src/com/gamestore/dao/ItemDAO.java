@@ -6,7 +6,7 @@ public class ItemDAO extends DAO<Item>
 {
 	private static ItemDAO instance = null;
 	
-	public ItemDAO() 
+	private ItemDAO() 
 	{
 		super("Item", "ItemID", Item.class);
 	}

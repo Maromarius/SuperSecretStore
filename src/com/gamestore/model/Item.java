@@ -44,8 +44,7 @@ public class Item extends DomainObject
 	}
 	public String getPlatformName()
 	{
-		String platName = "XBOX";
-		return platName;
+		return platform.toString();
 	}
 	public boolean Contains(String searchString)
 	{
@@ -107,13 +106,13 @@ public class Item extends DomainObject
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	public int getId() {
-		return id;
-	}
-
+	
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getId()
+	{
+		return this.id;
 	}
 	
 	public String getStockStatus()

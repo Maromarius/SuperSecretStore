@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="com.gamestore.model.ShoppingCart"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,7 +47,6 @@
 </head>
 <body>
 	<div id="content">
-	
 		<!-- top -->
 		<div id="top">
 			<h1 id="logo"><a href="#">Game<span>Store</span></a></h1>
@@ -54,7 +54,14 @@
 				<li><a href="#">Manage Inventory</a></li>
 				<li><a class="current" href="HomePage.jsp">Home</a></li>
 				<li><a href="ItemListViewer.jsp">Products</a></li>
-				<li><a href="#">Shopping Cart</a></li>
+				<li><a href="ShoppingCart.jsp">Shopping Cart <%
+				if(session.getAttribute("ShoppingCart") != null)
+				{
+					ShoppingCart cart = (ShoppingCart) session.getAttribute("ShoppingCart");
+					if(cart.getList().size()>0)
+						out.print(" ("+cart.getList().size()+")");
+				}
+				%></a></li>
 			</ul>
 		</div>
 		<!-- /top -->
