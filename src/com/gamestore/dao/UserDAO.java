@@ -6,7 +6,7 @@ public class UserDAO extends DAO<User>
 {
 	private static UserDAO instance = null;
 	
-	public UserDAO() 
+	private UserDAO() 
 	{
 		super("User", "UserID", User.class);
 	}

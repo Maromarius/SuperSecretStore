@@ -4,9 +4,18 @@ import com.gamestore.model.Order;
 
 public class OrderDAO extends DAO<Order>
 {
-	public OrderDAO(String tableName, String idName, Class<Order> clazz) 
+	private static OrderDAO instance = null;
+	
+	private OrderDAO() 
 	{
 		super("Order", "OrderID", Order.class);
+	}
+	
+	public static OrderDAO getInstance() 
+	{
+		if (instance == null) 
+			instance =  new OrderDAO();
+		return instance;
 	}
 	
 	public boolean update(int id, int userID)

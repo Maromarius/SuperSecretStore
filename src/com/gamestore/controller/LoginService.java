@@ -5,11 +5,11 @@ import com.gamestore.dao.UserDAO;
 public class LoginService 
 {
 	private UserDAO dao;
-	private static LoginService instance;
+	private static LoginService instance = null;
 	
-	public LoginService()
+	private LoginService()
 	{
-		dao = new UserDAO();
+		dao = UserDAO.getInstance();
 	}
 	
 	public static LoginService getInstance() 
