@@ -49,13 +49,13 @@ public class LoginServlet extends HttpServlet {
 		{
 			request.getSession(true).setAttribute("error", "Username &/or Password are empty");
 			dispatcher=request.getRequestDispatcher("index.jsp");
-			dispatcher.forward(request, response);
 		}
-		else{
+		else
+		{
 			User user = LoginGateway.getInstance().login(email, password);
 			boolean isAdmin = false;
-			if(user!=null){
-				
+			if(user!=null)
+			{	
 				if(user.isAdmin() == 1){
 					isAdmin = true;
 				}
@@ -64,37 +64,13 @@ public class LoginServlet extends HttpServlet {
 				request.getSession(true).setAttribute("username", email);
 				ServletContext context = this.getServletContext();
 				dispatcher = context.getRequestDispatcher("/InitiateGameStoreServlet");
-				dispatcher.forward(request, response);
-		
 			}
 			else
 			{
 				request.getSession(true).setAttribute("error", "Invalid Login Info");
 				dispatcher=request.getRequestDispatcher("index.jsp");
-				dispatcher.forward(request, response);
-			}
-			
-			
+			}		
 		}
-		/*
-		//this is temporary
-		if (true)
-		{
-			//User authentication succeeded
-			request.getSession().setAttribute("username", email);
-			ServletContext context = this.getServletContext();
-			dispatcher = context.getRequestDispatcher("/InitiateGameStoreServlet");
-			dispatcher.forward(request, response);
-			return;
-		}
-		else
-		{
-			//User authentication failed
-			request.getSession().setAttribute("msg", new String("Invalid username &/or password."));
-			request.getRequestDispatcher("/Login.jsp").forward(request, response);
-			return;
-		}
-		*/
+		dispatcher.forward(request, response);
 	}
-
 }
