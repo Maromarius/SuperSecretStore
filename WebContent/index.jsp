@@ -49,7 +49,7 @@
 	
 		<!-- top -->
 		<div id="top">
-			<h1 id="logo"><a href="#">Game<span>Store</span></a></h1>
+			<h1 id="logo"><a href="HomePage.jsp">Game<span>Store</span></a></h1>
 			<ul id="menu">
 				
 				<li><a href="HomePage.jsp">Home</a></li>
