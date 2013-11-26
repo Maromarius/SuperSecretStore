@@ -78,7 +78,7 @@
 		<!-- search bar -->
 		<div class="search">
 			<form action="SearchServlet"  method="get" id="search">
-			 	<input id="searchTextBox" name="searchTextBox" type="text" size="65" onfocus="javascript: if(this.value == 'Search...'){ this.value = ''; }" onblur="javascript: if(this.value==''){this.value='Search...';}" value="Search..."  />
+			 	<input id="searchTextBox" name="searchQuery" type="text" size="65" onfocus="javascript: if(this.value == 'Search...'){ this.value = ''; }" onblur="javascript: if(this.value==''){this.value='Search...';}" value="Search..."  />
 
 			</form>
 		</div>
