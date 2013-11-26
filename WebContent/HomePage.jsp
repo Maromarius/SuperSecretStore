@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="com.gamestore.model.ShoppingCart"%>
+<%@page import="com.gamestore.model.ShoppingCart"
+		import="com.gamestore.model.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,8 +52,14 @@
 		<div id="top">
 			<h1 id="logo"><a href="#">Game<span>Store</span></a></h1>
 			<ul id="menu">
-				<li><a href="ManageOrders.jsp">Manage Orders</a></li>
-				<li><a href="ManageInventory.jsp">Manage Inventory</a></li>
+			
+			<% 
+				Boolean isAdmin = (Boolean) (session.getAttribute("isAdmin"));
+				if(isAdmin){
+					out.println("<li><a href=" + "ManageOrders.jsp" + ">Manage Orders</a></li>");
+					out.println("<li><a href=" + "ManageInventory.jsp" + ">Manage Inventory</a></li>");
+				}
+			%>
 				<li><a class="current" href="HomePage.jsp">Home</a></li>
 				<li><a href="ItemListViewer.jsp">Products</a></li>
 				<li><a href="ShoppingCart.jsp">Shopping Cart <%
