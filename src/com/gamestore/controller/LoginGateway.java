@@ -26,12 +26,12 @@ public class LoginGateway {
 		String query = "select * from User where email='" + em + "' and password='" + pwd + "'";
 		try 
 		{
-		ResultSet rs = DatabaseConnection.getInstance().ExecuteQuery(query);
+		ResultSet rs = DatabaseConnection.getInstance().ExecuteQuery(query); // rs is never null
 		
-		if(rs == null)
+		if(!rs.next())
 			return null;
 		
-		rs.next();
+		//rs.next();
 		int id = rs.getInt("UserID");
 		String name = rs.getString("name");
 		String address = rs.getString("name");

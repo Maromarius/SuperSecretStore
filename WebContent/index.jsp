@@ -102,9 +102,9 @@
 					<input type="submit" value="Submit" />
 				</p>
 				 </form>
-				<p><c:if test="${not empty msg}">
-			    <h4>${msg}</h4>
-				</c:if>
+				<p style="color:red;">
+				<% String errorMsg = (String) session.getAttribute("error");
+					if (errorMsg != null) out.print(errorMsg); %>
 			  </p>
 			</div>
 			<!-- /middle column -->
