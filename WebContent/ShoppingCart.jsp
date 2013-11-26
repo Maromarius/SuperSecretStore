@@ -58,7 +58,8 @@
 		<div id="top">
 			<h1 id="logo"><a href="#">Game<span>Store</span></a></h1>
 			<ul id="menu">
-				<li h><a href="#">Manage Inventory</a></li>
+				<li><a href="ManageOrders.jsp">Manage Orders</a></li>
+				<li><a href="ManageInventory.jsp">Manage Inventory</a></li>
 				<li><a href="HomePage.jsp">Home</a></li>
 				<li><a href="ItemListViewer.jsp">Products</a></li>
 				<li><a class="current" href="#">Shopping Cart <%

@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="java.util.ArrayList"%>
-<%@page import="java.util.Iterator"%>
-<%@page import="com.gamestore.model.Item"%>
-<%@page import="com.gamestore.model.ItemContainer"%>
+<%@page import="com.gamestore.model.Order"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -55,8 +52,8 @@
 		<div id="top">
 			<h1 id="logo"><a href="#">Game<span>Store</span></a></h1>
 			<ul id="menu">
-				<li><a href="ManageOrders.jsp">Manage Orders</a></li>
 				<li><a class="current" href="#">Manage Inventory</a></li>
+				<li><a href="ManageInventory.jsp">Manage Inventory</a></li>
 				<li><a href="HomePage.jsp">Home</a></li>
 				<li><a href="ItemListViewer.jsp">Products</a></li>
 				<li><a href="ShoppingCart.jsp">Shopping Cart</a></li>
@@ -66,81 +63,77 @@
 		
 		<!-- pitch -->
 		<div id="pitch">
-			<h2 id="hello">The Inventory YOU care about</h2>
+			<h2 id="hello">Orders = Money</h2>
 		</div>
 		<!-- /pitch -->
 		
 		
-		
 		<div id="items">
-		
+		<form action="UpdateOrdersServlet" method="POST">
 		<table>
 			<tr>
-			
-				<th width="80" align="left">Item ID</th>
-				<th width="500" align="left">Item Description</th>
-				<th width="80" align="left">Quantity</th>
-				<th width="100" align="left">Price/Unit</th>
-				<th width="80" align="left" colspan="2" align="center">Edit</th>
-				<th></th>
+				<th width="100" align="left">Order #</th>
+				<th width="100" align="left">Client ID</th>
+				<th width="100" align="left">Number of Items</th>
+				<th width="100" align="left">Total</th>
+				<th width="100" align="left">Status</th>
+				<th width="100" align="left">Manage</th>
 			</tr>
 			
-			<% 
-			ArrayList<Item> itemsToDisplay = new ArrayList<Item>();
-			itemsToDisplay = ItemContainer.getInstance().GetAllItems();
-			for(Iterator<Item> i = itemsToDisplay.iterator(); i.hasNext();) {
-			    Item item = i.next();
-			%>
-				 
-				    <tr>
-						<td align="left"><%=item.getID() %></td>
-						<td><%=item.getName() %> (<%=item.getDescription() %>)</td>
-						<td><%=item.getQuantity() %></td>
-						<td>$<%=item.getPrice() %></td>
-						<td>
-							<form action="DeleteItemFromInventoryServlet" method="post">	
-								<input type="submit" value="Delete">
-								<input type="hidden" name=ItemIdToDelete value=<%=item.getID()%>>
-							</form>
-							</td>
-						<td>
-							<form action="" method="post">	
-								<input type="submit" value="Update">
-								<input type="hidden" name="itemID" value=<%=item.getID()%>>
-							</form>
-						</td>
-					</tr>
-			
-			<%	
+			<%
+				Order[] orders = (Order[]) session.getAttribute("Orders");
+				if(orders != null)
+				{
+					for(int i = 0 ; i < orders.length; i++) {
+				    	Order item = orders[i];
+				    %>
+				    
+		    <tr>
+				<td align="left">0928403</td>
+				<td>16541</td>
+				<td>5</td>
+				<td>$20.00</td>
+				<td>Shipped</td>
+				<td></td>
+			</tr>
+			<%
+					}
 				}
 			%>
-			
-				<tr>
-					<td><form action="AddInventory.jsp" method="POST">
-							<input class="addtocartbutton" type="submit" value="Add Item" />
-						</form></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><form action="CommitInventory" method="POST">
-							<input class="addtocartbutton" type="submit" value="Commit" />
-						</form></td>
-				</tr>
-			
+			<tr>
+				<td align="left">0928403</td>
+				<td>16541</td>
+				<td>5</td>
+				<td>$20.00</td>
+				<td>Shipped</td>
+				<td>
+					<input type="button" value="Delete">
+					<input type="button" value="Update">
+				</td>
+			</tr>
+			<tr>
+				<td><input class="addtocartbutton" type="submit" onclick="UpdateCartServlet" value="Update Cart" /></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><input class="addtocartbutton" type="submit" onclick="CheckoutServlet" value="Checkout" /></td>
+			</tr>
+		
 		</table>
-			
-		
+		</form>		
+
+
+
+
+
 		</div>
-		
-		
-		
-		
 		
 		<!-- footer -->
 		<div id="footer">
 			<p>&copy; 2013 <a href="#">GameStore</a> &middot; All Rights Reserved &middot; </p>
 		</div>
+		
 		<!-- /footer -->
 	</div>
 </body>

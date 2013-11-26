@@ -9,11 +9,13 @@ public class ItemContainer {
 	private static ItemContainer itemContainer;
 	private ArrayList<Integer> itemIds;
 	HashMap<Integer,Item> itemMap;
+	private int nextTemporaryId;
 	
 	private ItemContainer()
 	{
 		itemIds = new ArrayList<Integer>();
 		itemMap = new HashMap<Integer,Item>();
+		nextTemporaryId = 10000;
 	}
 	
 	public static ItemContainer getInstance()
@@ -25,6 +27,11 @@ public class ItemContainer {
 	
 	public void Add(Item item)
 	{
+		if(item.getID() == 0)
+		{
+			item.setID(nextTemporaryId);
+			nextTemporaryId++;
+		}
 		itemIds.add(item.getID());
 		itemMap.put(item.getID(), item);
 		return;
@@ -37,7 +44,7 @@ public class ItemContainer {
 	
 	public void Remove(int itemID)
 	{
-		itemIds.remove(itemMap.remove(itemID).getID());
+		itemIds.remove((Object) itemMap.remove(itemID).getID());
 	}
 
 	public ArrayList<Item> Search(String searchString)
@@ -51,6 +58,7 @@ public class ItemContainer {
 		}
 		return results;
 	}
+	
 	public void Reset()
 	{
 		itemIds.clear();

@@ -7,22 +7,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.gamestore.dao.ItemDAO;
-import com.gamestore.model.Item;
 import com.gamestore.model.ItemContainer;
 
 /**
- * Servlet implementation class AddItemServlet
+ * Servlet implementation class DeleteItemFromInventoryServlet
  */
-@WebServlet("/AddItemServlet")
-public class AddItemServlet extends HttpServlet {
+@WebServlet("/DeleteItemFromInventoryServlet")
+public class DeleteItemFromInventoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddItemServlet() {
+    public DeleteItemFromInventoryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,29 +31,19 @@ public class AddItemServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Item item = new Item();
-		
-		item.setName(request.getParameter("itemName"));
-		item.setDescription(request.getParameter("itemDescription"));
-		item.setImgUrl(request.getParameter("itemImageURL"));
-		item.setPrice(Double.parseDouble(request.getParameter("itemPrice")));
-		item.setQuantity(Integer.parseInt(request.getParameter("itemQuantity")));
-		item.setPlatform(request.getParameter("itemPlatform"));
-		item.setType(request.getParameter("itemType"));
-		ItemContainer.getInstance().Add(item);
-		ItemDAO.getInstance().addbyObject(item);
-		item =null;
-		response.sendRedirect("ManageInventory.jsp");
-		
-		
+		// TODO Auto-generated method stub
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request,response);
+		HttpSession session = request.getSession(true);
+		
+		int itemIdToDelete = Integer.parseInt(request.getParameter("ItemIdToDelete"));
+		ItemContainer.getInstance().Remove(itemIdToDelete);
+		ItemDAO.getInstance().delete(itemIdToDelete);
+		response.sendRedirect("ManageInventory.jsp");
 	}
 
 }
