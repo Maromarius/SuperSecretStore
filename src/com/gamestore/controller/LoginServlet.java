@@ -40,6 +40,7 @@ public class LoginServlet extends HttpServlet {
 	{
 		String email = request.getParameter("username");
 		String password = request.getParameter("password");
+		//this is temporary
 		if (true)
 		{
 			//User authentication succeeded

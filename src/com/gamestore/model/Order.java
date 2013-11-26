@@ -5,31 +5,23 @@ import java.sql.SQLException;
 
 public class Order extends DomainObject
 {
-	private int id, userID;
+	private int userID;
 	
 	public Order()
 	{
 		
 	}
 	
-	public Order(ResultSet rs)
+	public Order(ResultSet rs) throws SQLException
 	{
+		super(rs.getInt("OrderID"), Status.CLEAN);
 		try 
 		{
-			this.setId(rs.getInt("OrderID"));
 			this.setUserID(rs.getInt("userID"));
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();
 		}
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public int getUserID() {
