@@ -89,27 +89,27 @@
         <form action="AddItemServlet" method="post">
         <table>
             <tr>
-                <td align="right">Name : </td>
+                <td>Name</td>
                 <td><input type="text" name="itemName" ></td>
             </tr>
             <tr>
-                <td align="right">Price : </td>
+                <td>Price</td>
                 <td><input type="text" name="itemPrice"></td>
             </tr>
             <tr>
-                <td align="right">Quantity :</td>
+                <td>Quantity</td>
                 <td><input type="text" name="itemQuantity"></td>
             </tr>
             <tr>
-                <td align="right">Description : </td>
+                <td>Description</td>
                 <td><input type="text" name="itemDescription" ></td>
             </tr>
             <tr>
-                <td align="right">Image URL : </td>
+                <td>Image URL</td>
                 <td><input type="text" name="itemImageURL"></td>
             </tr>
             <tr>
-                <td align="right">Platform :</td>
+                <td>Platform</td>
                 <td><select name="itemPlatform" >
                 		<option value="XBox">XBox</option>
 						<option value="XBox 360">XBox 360</option>
@@ -126,7 +126,7 @@
 				</td>
             </tr>
             <tr>
-                <td align="right">Type :</td>
+                <td>Type :</td>
                 <td><select name="itemType" >
 		                <option value="Game">Game</option>
 		                <option value="Console">Console</option>
