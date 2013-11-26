@@ -12,7 +12,7 @@ public class Item extends DomainObject
 	private String imgUrl;
 	private String platform;
 	private String type;
-	private int id;
+	
 	
 	public Item(int ID, String name, double price, int quantity, String description, String imgUrl, String platform, String type) {
 		super(ID, Status.CLEAN);
@@ -25,11 +25,12 @@ public class Item extends DomainObject
 		this.type = type;
 	}
 	
-	public Item(ResultSet rs)
+	public Item(ResultSet rs) throws SQLException
 	{
+		super(rs.getInt("ItemID"), Status.CLEAN);
 		try 
 		{
-			this.id = rs.getInt("ItemID");
+			
 			this.name = rs.getString("name");
 			this.price = rs.getDouble("price");
 			this.quantity = rs.getInt("quantity");
