@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Assert;
 
 import com.gamestore.model.DomainObject;
+import com.gamestore.model.IdentityMap;
 
 public class UnitofWork {
 	
@@ -14,9 +15,8 @@ public class UnitofWork {
 	private List<DomainObject> dirtyObjects = new ArrayList();
 	private List<DomainObject> removedObjects = new ArrayList();
 	private static UnitofWork instance = null;
-	
-	
-	
+	private IdentityMap<DomainObject> idMap;
+
 	public static UnitofWork getCurrent() {
 		if (instance == null)
 		{
