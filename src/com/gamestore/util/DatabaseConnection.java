@@ -17,7 +17,33 @@ import com.jcraft.jsch.Session;
 public class DatabaseConnection 
 {
 	private static int port = 3334;
-	private static Connection connection;
+	private static Connection connection = null;
+	private static DatabaseConnection DBaccess = null;
+	
+	private DatabaseConnection(){
+		
+		connection = getConnection();
+	};
+	
+	public static DatabaseConnection getInstance(){
+		
+		if(DBaccess == null){
+			
+			DBaccess = new DatabaseConnection();
+		}
+		return DBaccess;
+	}
+	
+	public static Connection getConnection(){
+		
+		if(connection == null){
+			
+			connection = createConnection();
+		}
+		
+		return connection;
+	}
+	
 	static 
 	{
 		String driverName = "com.mysql.jdbc.Driver";
@@ -30,7 +56,7 @@ public class DatabaseConnection
 		}
 	}
 
-	public static Connection getConnection() 
+	private static Connection createConnection() 
 	{
 		connection = null;
 		// SSH CONNECTION SETTINGS TO LOG IN TO CONCORDIA
