@@ -37,10 +37,17 @@ public class SearchServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(true);
 		String searchString = request.getParameter("searchQuery").toString();
 		
-		HttpSession session = request.getSession(true);
-		session.setAttribute("itemsToDisplay", ItemContainer.getInstance().Search(searchString));
+		if(searchString.equals("") || searchString.equals(null))
+		{
+			session.setAttribute("itemsToDisplay", null);
+		}
+		else
+		{
+			session.setAttribute("itemsToDisplay", ItemContainer.getInstance().Search(searchString));
+		}
 		
 		response.sendRedirect("ItemListViewer.jsp");
 	}

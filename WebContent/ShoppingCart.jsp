@@ -79,9 +79,9 @@
 		</div>
 		<!-- /pitch -->
 		
-		
+		<form action="UpdateShoppingCartServlet" method="POST">
 		<table>
-			<tr  height="30">
+			<tr height="30">
 				<th width="30" align="left">Del</th>
 				<th width="500" align="left">Item Description</th>
 				<th width="80" align="left">In Stock</th>
@@ -96,18 +96,18 @@
 				ShoppingCart cart = (ShoppingCart) session.getAttribute("ShoppingCart");
 			if(cart != null)
 			{
-				
 				for(Iterator<Item> i = cart.getSetList().iterator(); i.hasNext(); ) {
 			    	Item item = i.next();
 			    %>
+			    
 			    <tr>
-				<td align="left"><input type="checkbox"></td>
+				<td align="left"><input name="<%=item.getId()%>CheckBox" type="checkbox"></td>
 				<td><%=item.getName()%> (<%=item.getPlatformName()%>)</td>
 				<td><%=item.getStockStatus() %></td>
 				<td><%=item.getId()%></td>
 				<td>
 					<input name="itemId" value="<%=item.getId()%>" type="hidden">
-					<input type="text" name="itemquantitytextbox" value="<%=cart.getCount(item.getId())%>" width="10">
+					<input type="text" name="<%=item.getId()%>Quantity" value="<%=cart.getCount(item.getId())%>" width="10">
 				</td>
 				<td>$<%=item.getPrice()%></td>
 			</tr>
@@ -128,16 +128,16 @@
 				<td><%=totalString%></td>
 			</tr>
 			<tr>
-				<td><a class="more" href="UpdateCart">Update</a></td>
+				<td><input class="addtocartbutton" type="submit" onclick="UpdateCartServlet" value="Update Cart" /></td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><a class="more" href="CheckoutCart">Checkout</a></td>
+				<td><input class="addtocartbutton" type="submit" onclick="CheckoutServlet" value="Checkout" /></td>
 			</tr>
 		
 		</table>
-		
+		</form>
 		<!-- footer -->
 		<div id="footer">
 			<p>&copy; 2013 <a href="#">GameStore</a> &middot; All Rights Reserved &middot; </p>

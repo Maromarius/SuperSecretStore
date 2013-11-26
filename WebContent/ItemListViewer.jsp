@@ -37,6 +37,7 @@
 			});
 		});
 	</script>
+	<script type="text/javascript" src="js/TextBoxScript.js"></script>
 	<script type="text/javascript" src="js/pitch.js"></script>
 	<script type="text/javascript">
 		Counter(new Date("Oct 20 2012 12:00:00 UTC"));
@@ -77,7 +78,8 @@
 		<!-- search bar -->
 		<div class="search">
 			<form action="SearchServlet"  method="get" id="search">
-			 	<input name="searchQuery" type="text" size="65" value="Search..."  />
+			 	<input id="searchTextBox" name="searchTextBox" type="text" size="65" onfocus="javascript: if(this.value == 'Search...'){ this.value = ''; }" onblur="javascript: if(this.value==''){this.value='Search...';}" value="Search..."  />
+
 			</form>
 		</div>
 		<!--/ search bar -->
