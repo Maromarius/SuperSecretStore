@@ -111,14 +111,6 @@ public class Item extends DomainObject
 		this.type = type;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getId()
-	{
-		return this.id;
-	}
-	
 	public String getStockStatus()
 	{
 		return "In Stock";
@@ -126,6 +118,6 @@ public class Item extends DomainObject
 	
 	public String toString()
 	{
-		return (id + " " + name + " " + price + " " + quantity + " " + description);
+		return (getID() + " " + name + " " + price + " " + quantity + " " + description);
 	}
 }

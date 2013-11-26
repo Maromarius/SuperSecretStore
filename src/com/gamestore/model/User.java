@@ -3,16 +3,11 @@ package com.gamestore.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class User extends DomainObject
+public class User
 {
-	private String name, address, phone, email, password, paymentType;
-	private boolean isAdmin;
+	private String name, address, phone, email, password;
+	private int isAdmin;
 	private int id;
-	
-	public User()
-	{
-		
-	}
 	
 	public User(ResultSet rs)
 	{
@@ -22,16 +17,27 @@ public class User extends DomainObject
 			this.name = rs.getString("name");
 			this.address = rs.getString("address");
 			this.phone = rs.getString("phone");
-			this.paymentType = rs.getString("paymentType");
 			this.email = rs.getString("email");
 			this.password = rs.getString("password");
-			this.isAdmin = rs.getBoolean("isAdmin");
+			this.isAdmin = rs.getInt("isAdmin");
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();
 		}
 	}
 	
+	public User(String name, String address, String phone, String email,
+			String password, int isAdmin, int id) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.phone = phone;
+		this.email = email;
+		this.password = password;
+		this.isAdmin = isAdmin;
+		this.id = id;
+	}
+
 	public User(String h)
 	{
 		System.out.println(h);
@@ -85,20 +91,12 @@ public class User extends DomainObject
 		this.password = password;
 	}
 
-	public boolean isAdmin() {
+	public int isAdmin() {
 		return isAdmin;
 	}
 
-	public void setAdmin(boolean isAdmin) {
+	public void setAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
-	}
-
-	public String getPaymentType() {
-		return paymentType;
-	}
-
-	public void setPaymentType(String paymentType) {
-		this.paymentType = paymentType;
 	}
 	
 	public String toString()

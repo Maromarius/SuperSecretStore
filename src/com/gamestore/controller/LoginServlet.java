@@ -38,12 +38,12 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String username = request.getParameter("username");
+		String email = request.getParameter("username");
 		String password = request.getParameter("password");
-		if (LoginService.getInstance().authenticateUser(username, password))
+		if (LoginGateway.getInstance().Login(email, password))
 		{
 			//User authentication succeeded
-			request.getSession().setAttribute("username", username);
+			request.getSession().setAttribute("username", email);
 			ServletContext context = this.getServletContext();
 			RequestDispatcher dispatcher = context.getRequestDispatcher("/InitiateGameStoreServlet");
 			dispatcher.forward(request, response);
