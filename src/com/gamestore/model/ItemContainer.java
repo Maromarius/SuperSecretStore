@@ -25,8 +25,8 @@ public class ItemContainer {
 	
 	public void Add(Item item)
 	{
-		itemIds.add(item.getId());
-		itemMap.put(item.getId(), item);
+		itemIds.add(item.getID());
+		itemMap.put(item.getID(), item);
 		return;
 	}
 	
@@ -37,7 +37,7 @@ public class ItemContainer {
 	
 	public void Remove(int itemID)
 	{
-		itemIds.remove(itemMap.remove(itemID).getId());
+		itemIds.remove(itemMap.remove(itemID).getID());
 	}
 
 	public ArrayList<Item> Search(String searchString)

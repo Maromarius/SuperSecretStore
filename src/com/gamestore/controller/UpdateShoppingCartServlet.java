@@ -39,16 +39,16 @@ public class UpdateShoppingCartServlet extends HttpServlet {
 			ArrayList<Item> items = cart.getSetList();
 			for(int i = 0; i < items.size(); i++)
 			{
-				String strCheckBoxValue = request.getParameter(items.get(i).getId()+"CheckBox");
-				int itemQuantity = Integer.parseInt(request.getParameter((items.get(i).getId()+"Quantity")));
+				String strCheckBoxValue = request.getParameter(items.get(i).getID()+"CheckBox");
+				int itemQuantity = Integer.parseInt(request.getParameter((items.get(i).getID()+"Quantity")));
 				
 				if (strCheckBoxValue != null)  
 				{
-				   	cart.Remove(items.get(i), cart.getCount(items.get(i).getId()));
+				   	cart.Remove(items.get(i), cart.getCount(items.get(i).getID()));
 				}  
 				else  
 				{
-				    if(itemQuantity >= 0 && cart.getCount(items.get(i).getId()) != itemQuantity)
+				    if(itemQuantity >= 0 && cart.getCount(items.get(i).getID()) != itemQuantity)
 				    {
 				    	cart.setQuantity(items.get(i),itemQuantity);
 				    }

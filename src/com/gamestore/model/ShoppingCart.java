@@ -21,12 +21,12 @@ public class ShoppingCart {
 	public void Add(Item item)
 	{
 		int currentQuantity = 0;
-		if(itemQuantity.containsKey(item.getId()))
+		if(itemQuantity.containsKey(item.getID()))
 		{
-			currentQuantity = itemQuantity.get(item.getId());
+			currentQuantity = itemQuantity.get(item.getID());
 		}
 		currentQuantity++;
-		itemQuantity.put(item.getId(), currentQuantity);
+		itemQuantity.put(item.getID(), currentQuantity);
 		itemSet.add(item);
 		return;
 	}
@@ -36,9 +36,9 @@ public class ShoppingCart {
 		int currentQuantity = 0;
 		if(itemQuantity.containsKey(item))
 		{
-			currentQuantity = itemQuantity.get(item.getId());
+			currentQuantity = itemQuantity.get(item.getID());
 		}
-		itemQuantity.put(item.getId(), quantity+currentQuantity);
+		itemQuantity.put(item.getID(), quantity+currentQuantity);
 		itemSet.add(item);
 		return;
 	}
@@ -50,15 +50,15 @@ public class ShoppingCart {
 	
 	public void Remove(Item item, int quantity)
 	{
-		int newQuantity = getCount(item.getId()) - quantity;
+		int newQuantity = getCount(item.getID()) - quantity;
 		if(newQuantity <= 0)
 		{
-			itemQuantity.remove(item.getId());
+			itemQuantity.remove(item.getID());
 			itemSet.remove(item);
 		}
 		else
 		{
-			itemQuantity.put(item.getId(), newQuantity);
+			itemQuantity.put(item.getID(), newQuantity);
 		}
 	}
 
@@ -79,7 +79,7 @@ public class ShoppingCart {
 		ArrayList<Item> itemList = new ArrayList<Item>();
 		for(Iterator<Item> i = itemSet.iterator(); i.hasNext(); ) {
 		    Item item = i.next();
-		    for(int n = 0 ; n < getCount(item.getId());n++)
+		    for(int n = 0 ; n < getCount(item.getID());n++)
 		    {
 		    	itemList.add(item);
 		    }
@@ -101,15 +101,15 @@ public class ShoppingCart {
 	
 	public void setQuantity(Item item, int quantity)
 	{
-		if(itemQuantity.containsKey(item.getId()))
+		if(itemQuantity.containsKey(item.getID()))
 		{
 			if(quantity == 0)
 			{
-				Remove(item, getCount(item.getId()));
+				Remove(item, getCount(item.getID()));
 			}
 			else
 			{
-				itemQuantity.put(item.getId(), quantity);
+				itemQuantity.put(item.getID(), quantity);
 				return;
 			}
 		}
