@@ -105,7 +105,7 @@
 						<h3><%=item.getName() %></h3><h4>(<%=item.getPlatformName()%>)</h4>
 						<p><img src="<%=item.getImgUrl() %>" height="226.6666666" width="160"></p>
 						<p><h3>$<%=item.getPrice() %></h3></p>
-						<input type="hidden" name="itemToAddID" value=<%=item.getId()%>>
+						<input type="hidden" name="itemToAddID" value=<%=item.getID()%>>
 						<p><input class="addtocartbutton" type="submit" value="Add to Cart" /></p>
 					</form>
 				</div>

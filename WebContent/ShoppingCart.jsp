@@ -101,18 +101,18 @@
 			    %>
 			    
 			    <tr>
-				<td align="left"><input name="<%=item.getId()%>CheckBox" type="checkbox"></td>
+				<td align="left"><input name="<%=item.getID()%>CheckBox" type="checkbox"></td>
 				<td><%=item.getName()%> (<%=item.getPlatformName()%>)</td>
 				<td><%=item.getStockStatus() %></td>
-				<td><%=item.getId()%></td>
+				<td><%=item.getID()%></td>
 				<td>
-					<input name="itemId" value="<%=item.getId()%>" type="hidden">
-					<input type="text" name="<%=item.getId()%>Quantity" value="<%=cart.getCount(item.getId())%>" width="10">
+					<input name="itemId" value="<%=item.getID()%>" type="hidden">
+					<input type="text" name="<%=item.getID()%>Quantity" value="<%=cart.getCount(item.getID())%>" width="10">
 				</td>
 				<td>$<%=item.getPrice()%></td>
 			</tr>
 			<%
-				total += (item.getPrice()*cart.getCount(item.getId()));
+				total += (item.getPrice()*cart.getCount(item.getID()));
 				}
 				NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
 				totalString = currencyFormatter.format(total);
