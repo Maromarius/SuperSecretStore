@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 		if (email.isEmpty() || password.isEmpty())
 		{
 			request.getSession(true).setAttribute("error", "email or Password are empty");
-			dispatcher=request.getRequestDispatcher("index.jsp");
+			dispatcher=request.getRequestDispatcher("HomePage.jsp");
 		}
 		else{
 			User user = LoginGateway.getInstance().login(email, password);
