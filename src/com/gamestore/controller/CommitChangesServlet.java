@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.gamestore.dao.ItemDAO;
+import com.gamestore.dao.ItemUnitofWork;
 import com.gamestore.model.Item;
 import com.gamestore.model.ItemContainer;
 
@@ -46,7 +47,7 @@ public class CommitChangesServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		
 		//Traverse the UOW for dirty objects and commit changes to the db.
-		
+		ItemUnitofWork.getInstance().commit();
 		
 		//Retrieve back all items from the database and populate ItemContainer.
 		if(session.getAttribute("ShoppingCart") != null)

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.gamestore.dao.ItemDAO;
+import com.gamestore.dao.ItemUnitofWork;
 import com.gamestore.model.Item;
 import com.gamestore.model.ItemContainer;
 
@@ -44,7 +45,7 @@ public class AddItemServlet extends HttpServlet {
 		ItemContainer.getInstance().Add(item);
 		
 		//Obselete, UOW will take care upon commit
-		
+		ItemUnitofWork.getInstance().registerNew(item);
 		//ItemDAO.getInstance().addbyObject(item);
 		item =null;
 		response.sendRedirect("ManageInventory.jsp");

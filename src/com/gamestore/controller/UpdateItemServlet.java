@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.gamestore.dao.ItemDAO;
+import com.gamestore.dao.ItemUnitofWork;
 import com.gamestore.model.Item;
 import com.gamestore.model.ItemContainer;
 
@@ -53,7 +54,7 @@ public class UpdateItemServlet extends HttpServlet {
 		item.setPlatform(request.getParameter("itemPlatform"));
 		item.setType(request.getParameter("itemType"));
 		ItemContainer.getInstance().Update(item);
-		
+		ItemUnitofWork.getInstance().registerDirty(item);
 		//obsolete, we'll do this in the commit button section.
 		//ItemDAO.getInstance().update(item.getID(), item.getName(), item.getPrice(), item.getQuantity(), item.getDescription(), item.getImgUrl(), item.getPlatform(), item.getType());
 		request.getSession(true).setAttribute("itemToUpdate", item);

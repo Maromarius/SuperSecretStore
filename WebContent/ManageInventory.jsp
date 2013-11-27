@@ -124,7 +124,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><form action="CommitInventory" method="POST">
+					<td><form action="CommitChangesServlet" method="POST">
 							<input class="addtocartbutton" type="submit" value="Commit" />
 						</form></td>
 				</tr>

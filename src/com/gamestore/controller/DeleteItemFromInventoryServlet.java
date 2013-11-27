@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.gamestore.dao.ItemDAO;
+import com.gamestore.dao.ItemUnitofWork;
 import com.gamestore.model.ItemContainer;
 
 /**
@@ -41,8 +42,8 @@ public class DeleteItemFromInventoryServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		
 		int itemIdToDelete = Integer.parseInt(request.getParameter("ItemIdToDelete"));
+		ItemUnitofWork.getInstance().registerRemoved(ItemContainer.getInstance().Get(itemIdToDelete));
 		ItemContainer.getInstance().Remove(itemIdToDelete);
-		
 		//obsolete, will get done in the CommitChangesServlet with UOW
 		//ItemDAO.getInstance().delete(itemIdToDelete);
 		response.sendRedirect("ManageInventory.jsp");

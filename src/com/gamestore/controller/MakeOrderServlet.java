@@ -40,7 +40,10 @@ public class MakeOrderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		PaymentServices ps = new PaymentServices(request.getParameter("userCreditCardNumber"));
+<<<<<<< HEAD
 		//Order order = new Order();
+=======
+>>>>>>> Linked ItemDAO to manage inventory
 		
 		if(ps.VerifyPayment())
 		{
