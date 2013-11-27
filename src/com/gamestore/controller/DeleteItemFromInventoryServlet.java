@@ -42,7 +42,9 @@ public class DeleteItemFromInventoryServlet extends HttpServlet {
 		
 		int itemIdToDelete = Integer.parseInt(request.getParameter("ItemIdToDelete"));
 		ItemContainer.getInstance().Remove(itemIdToDelete);
-		ItemDAO.getInstance().delete(itemIdToDelete);
+		
+		//obsolete, will get done in the CommitChangesServlet with UOW
+		//ItemDAO.getInstance().delete(itemIdToDelete);
 		response.sendRedirect("ManageInventory.jsp");
 	}
 
