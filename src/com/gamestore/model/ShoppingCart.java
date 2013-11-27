@@ -117,13 +117,18 @@ public class ShoppingCart {
 	
 	public String getTotalPrice()
 	{
-		double total = 0;
-		for(Iterator<Item> i = itemSet.iterator(); i.hasNext(); ) {
-		    Item item = i.next();
-		    total += (itemQuantity.get(item.getID())*item.getPrice());
+		if(itemSet.size() > 0)
+		{
+
+			double total = 0;
+			for(Iterator<Item> i = itemSet.iterator(); i.hasNext(); ) {
+			    Item item = i.next();
+			    total += (itemQuantity.get(item.getID())*item.getPrice());
+			}
+			NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
+			return currencyFormatter.format(total);
 		}
-		NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
-		return currencyFormatter.format(total);
+		return "";
 	}
 
 }

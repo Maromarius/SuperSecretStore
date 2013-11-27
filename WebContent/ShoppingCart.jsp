@@ -119,7 +119,7 @@
 			</tr>
 			<%
 				}
-			}
+			
 			%>
 			
 			<tr >
@@ -128,22 +128,22 @@
 				<td></td>
 				<td></td>
 				<td align="center">Total</td>
-				<td><%=cart.getTotalPrice()%></td>
+				<td><%if(cart.getSetList().size() > 0)
+					{%><%=cart.getTotalPrice()%><%}%></td>
 			</tr>
 			<tr>
-				<td><input class="addtocartbutton" type="submit" value="Update Cart" /></td>
+				<td><%if(cart.getSetList().size() > 0)
+					{%><input class="addtocartbutton" type="submit" value="Update Cart" /><%}%></td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><%
-					if(cart.getSetList().size() > 0)
-					{%>
+				<td>
 						<a class="addtocartbutton" href="OrderConfirmation.jsp">Checkout</a>
-				   <%}%>
+				   
 				</td>
 			</tr>
-		
+		<%} %>
 		</table>
 		</form>
 		<!-- footer -->
