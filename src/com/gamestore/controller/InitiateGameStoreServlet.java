@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.gamestore.dao.ItemDAO;
+import com.gamestore.dao.OrderDAO;
 import com.gamestore.model.Item;
 import com.gamestore.model.ItemContainer;
+import com.gamestore.model.User;
 
 /**
  * Servlet implementation class InitiateGameStoreServlet
@@ -42,6 +44,11 @@ public class InitiateGameStoreServlet extends HttpServlet {
 			//create new shopping cart
 			session.setAttribute("ShoppingCart", null);
 		}
+		
+		//Set orders
+		User user = (User) session.getAttribute("user");
+		session.setAttribute("allOrders", OrderDAO.getInstance().getAll());
+		session.setAttribute("myOrders", OrderDAO.getInstance().findByUserId(user.getId()));
 		
 		ItemContainer.getInstance().Reset();
 		//Get Items from db and load them to model.
