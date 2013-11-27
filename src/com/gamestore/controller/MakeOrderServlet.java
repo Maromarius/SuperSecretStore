@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.gamestore.controller.PaymentServices;
+import com.gamestore.dao.UnitofWork;
 import com.gamestore.model.Order;
+import com.gamestore.model.ShoppingCart;
+import com.gamestore.model.User;
 
 /**
  * Servlet implementation class MakeOrderServlet
@@ -40,13 +43,13 @@ public class MakeOrderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		PaymentServices ps = new PaymentServices(request.getParameter("userCreditCardNumber"));
-<<<<<<< HEAD
-		//Order order = new Order();
-=======
->>>>>>> Linked ItemDAO to manage inventory
-		
+		User user = (User) session.getAttribute("user");
 		if(ps.VerifyPayment())
 		{
+			ShoppingCart cart = (ShoppingCart) session.getAttribute("ShoppingCart");
+			Order order = new Order(1, cart.makeOrder(), "Pending", user);
+			order.markNew();
+			UnitofWork.getCurrent().commit();
 			session.setAttribute("ShoppingCart", null);
 			session.setAttribute("OrderDetailsMessage", "Order Complete! Thanks");
 		}

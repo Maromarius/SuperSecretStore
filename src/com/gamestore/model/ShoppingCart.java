@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class ShoppingCart {
@@ -130,5 +131,19 @@ public class ShoppingCart {
 		}
 		return "";
 	}
+	
+	public ArrayList<OrderedItem> makeOrder()
+	{
+		ArrayList<OrderedItem> orderedItems = new ArrayList<OrderedItem>();
+		ArrayList<Item> shoppingCartItems = getList();
+		for(int i = 0; i < shoppingCartItems.size(); i++)
+		{
+			Item item = shoppingCartItems.get(i);
+			orderedItems.add(new OrderedItem(item.getID(),  this.getCount(item.getID()),  item.getPrice()));
+		}
+		return orderedItems;
+		
+	}
+	
 
 }
