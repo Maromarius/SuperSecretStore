@@ -84,33 +84,33 @@
 			<div class="col">
 				<h3>Update Item</h3>
 		<%
-        	//Item item = (Item) session.getAttribute("ItemToUpdate");
+        	Item item = (Item) session.getAttribute("itemToUpdate");
         %>
         <form action="UpdateItemServlet" method="post">
         <table>
             <tr>
                 <td>Name</td>
-                <td><input type="text" name="itemName" ></td>
+                <td><input type="text" name="itemName" value=<% out.print(item.getName());%> ></td>
             </tr>
             <tr>
                 <td>Price</td>
-                <td><input type="text" name="itemPrice"></td>
+                <td><input type="text" name="itemPrice" value=<% out.print(item.getPrice());%> ></td>
             </tr>
             <tr>
                 <td>Quantity</td>
-                <td><input type="text" name="itemQuantity"></td>
+                <td><input type="text" name="itemQuantity" value=<% out.print(item.getQuantity());%> ></td>
             </tr>
             <tr>
                 <td>Description</td>
-                <td><input type="text" name="itemDescription" ></td>
+                <td><input type="text" name="itemDescription" value=<% out.print(item.getDescription());%> ></td>
             </tr>
             <tr>
                 <td>Image URL</td>
-                <td><input type="text" name="itemImageURL"></td>
+                <td><input type="text" name="itemImageURL" value=<% out.print(item.getImgUrl());%> ></td>
             </tr>
             <tr>
                 <td>Platform</td>
-                <td><select name="itemPlatform" >
+                <td><select id="sel" name="itemPlatform" >
                 		<option value="XBox">XBox</option>
 						<option value="XBox 360">XBox 360</option>
 						<option value="XBox One">XBox One</option>

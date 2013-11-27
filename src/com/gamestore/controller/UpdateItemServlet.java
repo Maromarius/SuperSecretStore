@@ -36,6 +36,7 @@ public class UpdateItemServlet extends HttpServlet {
 		//ItemContainer.getInstance().update(itemIdToUpdate);
 		int itemIdToUpdate = Integer.parseInt(request.getParameter("itemID"));
 		Item i = ItemDAO.getInstance().find(itemIdToUpdate);
+		request.getSession(true).setAttribute("itemToUpdate", i);
 	}
 
 	/**
