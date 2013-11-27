@@ -37,6 +37,11 @@ public class ItemContainer {
 		return;
 	}
 	
+	public void Update(Item item)
+	{
+		itemMap.put(item.getID(), item);
+	}
+	
 	public Item Get(int itemID)
 	{
 		return itemMap.get(itemID);

@@ -44,6 +44,19 @@ public class UpdateItemServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		Item item = (Item) request.getSession().getAttribute("itemToUpdate");
+		item.setName(request.getParameter("itemName"));
+		item.setDescription(request.getParameter("itemDescription"));
+		item.setImgUrl(request.getParameter("itemImageURL"));
+		item.setPrice(Double.parseDouble(request.getParameter("itemPrice")));
+		item.setQuantity(Integer.parseInt(request.getParameter("itemQuantity")));
+		item.setPlatform(request.getParameter("itemPlatform"));
+		item.setType(request.getParameter("itemType"));
+		ItemContainer.getInstance().Update(item);
+		ItemDAO.getInstance().update(item.getID(), item.getName(), item.getPrice(), item.getQuantity(), 
+				item.getDescription(), item.getImgUrl(), item.getPlatform(), item.getType());
+		request.getSession(true).setAttribute("itemToUpdate", item);
+		//item = null;
 		response.sendRedirect("ManageInventory.jsp");
 	}
 
