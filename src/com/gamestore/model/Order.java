@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.gamestore.dao.OrderDAORAMI;
+import com.gamestore.dao.OrderDAO;
 
 public class Order extends DomainObject
 {
@@ -75,13 +75,13 @@ public class Order extends DomainObject
 		
 		// Manage Lock Item in DB
 		orderedItems.get(index).setPrice(price);
-		OrderDAORAMI.getInstance().update(this);
+		OrderDAO.getInstance().update(this);
 	}
 	
 	public boolean updateItemQty(int index, int qty)
 	{
 		int diff = 0;
-		if (OrderDAORAMI.getInstance().checkQuantities(qty, orderedItems.get(index), orderedItems.get(index).getItemID()))
+		if (OrderDAO.getInstance().checkQuantities(qty, orderedItems.get(index), orderedItems.get(index).getItemID()))
 		{
 			return true;
 		}
@@ -90,17 +90,17 @@ public class Order extends DomainObject
 			diff = qty - orderedItems.get(index).getQuantity();
 		}
 		orderedItems.get(index).setQuantity(qty);
-		OrderDAORAMI.getInstance().updateOrderItem(this, index, diff);
+		OrderDAO.getInstance().updateOrderItem(this, index, diff);
 		return false;
 	}
 	
 	public void deleteItem(int index)
 	{
-		OrderDAORAMI.getInstance().deleteOrderItem(this.getID(), orderedItems.get(index));
+		OrderDAO.getInstance().deleteOrderItem(this.getID(), orderedItems.get(index));
 		orderedItems.remove(index);
 		if (orderedItems.isEmpty())
 		{
-			OrderDAORAMI.getInstance().delete(this.getID());
+			OrderDAO.getInstance().delete(this.getID());
 		}
 	}
 	
@@ -110,10 +110,10 @@ public class Order extends DomainObject
 		while(it.hasNext())
 		{
 			OrderedItem oi = it.next();
-			OrderDAORAMI.getInstance().deleteOrderItem(this.getID(), oi);
+			OrderDAO.getInstance().deleteOrderItem(this.getID(), oi);
 			it.remove();
 		}
-		OrderDAORAMI.getInstance().delete(this.getID());
+		OrderDAO.getInstance().delete(this.getID());
 
 	}
 	
@@ -125,13 +125,13 @@ public class Order extends DomainObject
 			OrderedItem oi = it.next();
 			if (oi.getQuantity() == 0)
 			{
-				OrderDAORAMI.getInstance().deleteOrderItem(this.getID(), oi);
+				OrderDAO.getInstance().deleteOrderItem(this.getID(), oi);
 				it.remove();
 			}
 		}
 		if (this.isEmpty())
 		{
-			OrderDAORAMI.getInstance().delete(this.getID());
+			OrderDAO.getInstance().delete(this.getID());
 		}
 	}
 	
