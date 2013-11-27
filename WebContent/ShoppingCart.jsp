@@ -138,9 +138,8 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td>
-						<a class="addtocartbutton" href="OrderConfirmation.jsp">Checkout</a>
-				   
+				<td><%if(cart.getSetList().size() > 0)
+					{%><a class="addtocartbutton" href="OrderConfirmation.jsp">Checkout</a><%}%>
 				</td>
 			</tr>
 		<%} %>
