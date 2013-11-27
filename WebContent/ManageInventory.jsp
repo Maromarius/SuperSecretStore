@@ -99,13 +99,13 @@
 						<td>$<%=item.getPrice() %></td>
 						<td>
 							<form action="DeleteItemFromInventoryServlet" method="post">	
-								<input type="submit" value="Delete">
+								<input class="itemmodbutton" type="submit" value="Delete">
 								<input type="hidden" name=ItemIdToDelete value=<%=item.getID()%>>
 							</form>
 							</td>
 						<td>
 							<form action="UpdateItemServlet" method="get">	
-								<input type="submit" value="Update">
+								<input class="itemmodbutton" type="submit" value="Update">
 								<input type="hidden" name="itemID" value=<%=item.getID()%>>
 							</form>
 						</td>

@@ -40,7 +40,7 @@ public class MakeOrderServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		PaymentServices ps = new PaymentServices(request.getParameter("userCreditCardNumber"));
-		Order order = new Order();
+		//Order order = new Order();
 		
 		if(ps.VerifyPayment())
 		{

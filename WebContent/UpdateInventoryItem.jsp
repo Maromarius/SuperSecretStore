@@ -123,7 +123,7 @@
                 <td><select name="itemType" >
 		        <% String typeOptions[] = {"Game", "Console", "Accessory"};        
                 	for (String s : typeOptions)		
-                		out.print("<option value=\"" + s +"\" "+ (s.equals(item.getPlatform())?"selected":"") +">"+ s +"</option>");
+                		out.print("<option value=\"" + s +"\" "+ (s.equals(item.getType())?"selected":"") +">"+ s +"</option>");
 				%>	
                 </select></td>
             </tr>
