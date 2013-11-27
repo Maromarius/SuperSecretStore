@@ -134,12 +134,12 @@
 				<td><%=totalString%></td>
 			</tr>
 			<tr>
-				<td><input class="addtocartbutton" type="submit" onclick="UpdateCartServlet" value="Update Cart" /></td>
+				<td><input class="addtocartbutton" type="submit" value="Update Cart" /></td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><input class="addtocartbutton" type="submit" onclick="CheckoutServlet" value="Checkout" /></td>
+				<td><a class="addtocartbutton" href="OrderConfirmation.jsp">Checkout</a></td>
 			</tr>
 		
 		</table>
