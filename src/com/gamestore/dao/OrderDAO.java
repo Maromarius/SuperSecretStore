@@ -67,8 +67,7 @@ private static OrderDAO instance = null;
 					int itemId = rs.getInt("itemID");
 					int quantity = rs.getInt("quantity");
 					double price = rs.getDouble("price");
-					String name = rs.getString("name");
-					orderedItems.add(new OrderedItem(itemId, quantity, price, name));
+					orderedItems.add(new OrderedItem(itemId, quantity, price));
 				}
 				else
 				{
@@ -108,7 +107,6 @@ private static OrderDAO instance = null;
 		int itemId = 0;
 		int quantity = 0;
 		double price = 0;
-		String name = "";
 		String status = "";
 		
 		String query = "select * from Orders INNER JOIN OrderedItem on Orders.OrderID = OrderedItem.orderID where Orders.OrderID = '"+ id + "'";
@@ -120,9 +118,8 @@ private static OrderDAO instance = null;
 				itemId = rs.getInt("itemID");
 				quantity = rs.getInt("quantity");
 				price = rs.getDouble("price");
-				name = rs.getString("name");
 				
-				orderedItems.add(new OrderedItem(itemId, quantity, price, name));
+				orderedItems.add(new OrderedItem(itemId, quantity, price));
 			}
 			o = new Order(id, new ArrayList<OrderedItem>(orderedItems), status, LoginGateway.getInstance().getUser(userId));
 		
@@ -168,8 +165,8 @@ private static OrderDAO instance = null;
 						int itemId = rs.getInt("itemID");
 						int quantity = rs.getInt("quantity");
 						double price = rs.getDouble("price");
-						String name = rs.getString("name");
-						orderedItems.add(new OrderedItem(itemId, quantity, price, name));
+
+						orderedItems.add(new OrderedItem(itemId, quantity, price));
 					}
 					else
 					{
@@ -231,7 +228,7 @@ private static OrderDAO instance = null;
 		
 		for (OrderedItem oi : o.getOrderedItems())
 		{
-			String query2 = "INSERT INTO OrderedItem (orderID, itemID, quantity, price, name) VALUES (" + "'" + o.getID() + "','" + oi.getItemID() + "','" + oi.getQuantity() + "','" + oi.getPrice() + "','" + oi.getName() + "'" + ")";
+			String query2 = "INSERT INTO OrderedItem (orderID, itemID, quantity, price) VALUES (" + "'" + o.getID() + "','" + oi.getItemID() + "','" + oi.getQuantity() + "','" + oi.getPrice() + "'" + ")";
 			DatabaseConnection.getInstance().Execute(query2);
 			
 			Item item = ItemContainer.getInstance().Get(oi.getItemID());
@@ -249,7 +246,7 @@ private static OrderDAO instance = null;
 		Order o = (Order) obj;
 		for (OrderedItem oi : o.getOrderedItems())
 		{
-			String query = "UPDATE OrderedItem SET orderID='" + o.getID() + "',itemID='" + oi.getItemID() + "',quantity='" + oi.getQuantity() + "', price='" + oi.getPrice() + "',name='" + oi.getName() + "' WHERE orderID='" + o.getID() + "' AND itemID='" + oi.getItemID() + "'";
+			String query = "UPDATE OrderedItem SET orderID='" + o.getID() + "',itemID='" + oi.getItemID() + "',quantity='" + oi.getQuantity() + "', price='" + oi.getPrice() + "' WHERE orderID='" + o.getID() + "' AND itemID='" + oi.getItemID() + "'";
 			DatabaseConnection.getInstance().Execute(query);
 			
 	
@@ -267,7 +264,7 @@ private static OrderDAO instance = null;
 		Order o = (Order) obj;
 		OrderedItem oi = o.getOrderedItems().get(itemIndex);
 		
-		String query = "UPDATE OrderedItem SET orderID='" + o.getID() + "',itemID='" + oi.getItemID() + "',quantity='" + oi.getQuantity() + "', price='" + oi.getPrice() + "',name='" + oi.getName() + "' WHERE orderID='" + o.getID() + "' AND itemID='" + oi.getItemID() + "'";
+		String query = "UPDATE OrderedItem SET orderID='" + o.getID() + "',itemID='" + oi.getItemID() + "',quantity='" + oi.getQuantity() + "', price='" + oi.getPrice() + "' WHERE orderID='" + o.getID() + "' AND itemID='" + oi.getItemID() + "'";
 		DatabaseConnection.getInstance().Execute(query);
 		
 		Item item = ItemContainer.getInstance().Get(oi.getItemID());
@@ -280,7 +277,6 @@ private static OrderDAO instance = null;
 		OrderedItem oi = (OrderedItem) obj;
 		String query = "DELETE FROM OrderedItem WHERE orderID='" + oid + "' AND itemID='" + oi.getItemID() + "'";
 		DatabaseConnection.getInstance().Execute(query);
-		//soleInstance.order.remove(oid);
 		
 		Order o = instance.get(oid);
 		

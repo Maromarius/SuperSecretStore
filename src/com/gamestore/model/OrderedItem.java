@@ -5,16 +5,13 @@ public class OrderedItem extends DomainObject{
 	private int ItemID;
 	private int quantity;
 	private double price;
-	private String name;
 	
 	
-	
-	public OrderedItem(int itemID, int quantity, double price, String name) {
+	public OrderedItem(int itemID, int quantity, double price) {
 		super();
 		this.ItemID = itemID;
 		this.quantity = quantity;
 		this.price = price;
-		this.name = name;
 	}
 
 
@@ -53,17 +50,6 @@ public class OrderedItem extends DomainObject{
 		this.price = price;
 	}
 
-
-
-	public String getName() {
-		return name;
-	}
-
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
 	
 	
 	
