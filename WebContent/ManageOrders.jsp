@@ -57,6 +57,7 @@
 				<li><a href="HomePage.jsp">Home</a></li>
 				<li><a href="ItemListViewer.jsp">Products</a></li>
 				<li><a href="ShoppingCart.jsp">Shopping Cart</a></li>
+				<li><a href="ManageUserOrders.jsp">My Order</a></li>
 			</ul>
 		</div>
 		<!-- /top -->

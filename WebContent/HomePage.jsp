@@ -70,6 +70,7 @@
 						out.print(" ("+cart.getList().size()+")");
 				}
 				%></a></li>
+				<li><a href="ManageUserOrders.jsp">My Order</a></li>
 			</ul>
 		</div>
 		<!-- /top -->
