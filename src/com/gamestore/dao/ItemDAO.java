@@ -23,7 +23,15 @@ public class ItemDAO extends DAO<Item>
 	{
 		String sql = "UPDATE `soen387k`.`Item` SET `name`='"+name+"', `price`='"+price+"', "
 		 		+ "`quantity`='"+quantity+"', `description`='"+description+"', `imgURL`='"+imgURL+"',  "
-		 				+ "`platform`='"+platform+"', `type`='"+type+"' WHERE `UserID`='"+id+"';";
+		 				+ "`platform`='"+platform+"', `type`='"+type+"' WHERE `ItemID`='"+id+"';";
+		return executeSQLStatement(sql);
+	}
+	
+	public boolean update(Item item)
+	{
+		String sql = "UPDATE `soen387k`.`Item` SET `name`='"+item.getName()+"', `price`='"+item.getPrice()+"', "
+		 		+ "`quantity`='"+item.getQuantity()+"', `description`='"+item.getDescription()+"', `imgURL`='"+item.getImgUrl()+"',  "
+		 				+ "`platform`='"+item.getPlatform()+"', `type`='"+item.getType()+"' WHERE `ItemID`='"+item.getID()+"';";
 		return executeSQLStatement(sql);
 	}
 	

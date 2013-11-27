@@ -9,19 +9,19 @@ import java.util.HashMap;
 import com.gamestore.model.Item;
 import com.gamestore.model.Order;
 
-public class OrderDAO extends DAO<Order>
+public class OrderDAOTEMP extends DAO<Order>
 {
-	private static OrderDAO instance = null;
+	private static OrderDAOTEMP instance = null;
 	
-	private OrderDAO() 
+	private OrderDAOTEMP() 
 	{
 		super("soen387k.Order", "OrderID", Order.class);
 	}
 	
-	public static OrderDAO getInstance() 
+	public static OrderDAOTEMP getInstance() 
 	{
 		if (instance == null) 
-			instance =  new OrderDAO();
+			instance =  new OrderDAOTEMP();
 		return instance;
 	}
 	
