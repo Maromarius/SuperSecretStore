@@ -121,4 +121,16 @@ public class Item extends DomainObject
 	{
 		return (getID() + " " + name + " " + price + " " + quantity + " " + description);
 	}
+	public String getShortName()
+	{
+		if(name.length()>20)
+		{
+			String newName = name.substring(0,17);
+			return newName+"...";
+		}
+		else
+		{
+			return name;
+		}
+	}
 }

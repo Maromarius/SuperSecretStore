@@ -116,7 +116,7 @@
             </tr>
             <tr>
                 <td>Total Order Price</td>
-                <td><%=cart.getTotalPrice() %></td>
+                <td><%=cart.getTotalPrice()%></td>
             </tr>
             <tr>
 				<td> </td>
@@ -132,7 +132,9 @@
 		
 		</table>
 		</form>
-		<%}//end if statement %>
+		<%
+			}//end if statement 
+		%>
 		<!-- footer -->
 		<div id="footer">
 			<p>&copy; 2013 <a href="#">GameStore</a> &middot; All Rights Reserved &middot; </p>

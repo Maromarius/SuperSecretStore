@@ -118,10 +118,7 @@
 				<td>$<%=item.getPrice()%></td>
 			</tr>
 			<%
-				total += (item.getPrice()*cart.getCount(item.getID()));
 				}
-				NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
-				totalString = currencyFormatter.format(total);
 			}
 			%>
 			
@@ -131,7 +128,7 @@
 				<td></td>
 				<td></td>
 				<td align="center">Total</td>
-				<td><%=totalString%></td>
+				<td><%=cart.getTotalPrice()%></td>
 			</tr>
 			<tr>
 				<td><input class="addtocartbutton" type="submit" value="Update Cart" /></td>
@@ -139,7 +136,12 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><a class="addtocartbutton" href="OrderConfirmation.jsp">Checkout</a></td>
+				<td><%
+					if(cart.getSetList().size() > 0)
+					{%>
+						<a class="addtocartbutton" href="OrderConfirmation.jsp">Checkout</a>
+				   <%}%>
+				</td>
 			</tr>
 		
 		</table>
