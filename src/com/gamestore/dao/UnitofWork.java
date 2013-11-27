@@ -69,21 +69,21 @@ public class UnitofWork {
 	private void insertNew() {
 		for (Iterator objects = newObjects.iterator(); objects.hasNext();) {
 			DomainObject obj = (DomainObject) objects.next();
-			
+			ItemDAO.getInstance().add(obj);
 		}
 	}
 	
 	private void updateDirty() {
 		for (Iterator objects = dirtyObjects.iterator(); objects.hasNext();) {
 			DomainObject obj = (DomainObject) objects.next();
-			
+			ItemDAO.getInstance().update(obj);
 		}
 	}
 	
 	private void deleteRemoved() {
 		for (Iterator objects = removedObjects.iterator(); objects.hasNext();) {
 			DomainObject obj = (DomainObject) objects.next();
-		
+			ItemDAO.getInstance().delete(obj.getID());
 		}
 	}
 	public List<DomainObject> getAllNew() {

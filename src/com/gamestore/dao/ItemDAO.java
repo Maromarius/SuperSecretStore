@@ -1,5 +1,6 @@
 package com.gamestore.dao;
 
+import com.gamestore.model.DomainObject;
 import com.gamestore.model.Item;
 
 public class ItemDAO extends DAO<Item>
@@ -27,8 +28,9 @@ public class ItemDAO extends DAO<Item>
 		return executeSQLStatement(sql);
 	}
 	
-	public boolean update(Item item)
+	public boolean update(DomainObject obj)
 	{
+		Item item = (Item) obj;
 		String sql = "UPDATE `soen387k`.`Item` SET `name`='"+item.getName()+"', `price`='"+item.getPrice()+"', "
 		 		+ "`quantity`='"+item.getQuantity()+"', `description`='"+item.getDescription()+"', `imgURL`='"+item.getImgUrl()+"',  "
 		 				+ "`platform`='"+item.getPlatform()+"', `type`='"+item.getType()+"' WHERE `ItemID`='"+item.getID()+"';";
@@ -38,9 +40,19 @@ public class ItemDAO extends DAO<Item>
 	public boolean add(String name, double price, int quantity, String description, String imgURL, 
 			String platform, String type)
 	{
+		
 		String sql = "INSERT INTO `soen387k`.`Item` (`name`, `price`, `quantity`, `description`, `imgURL`, "
 				+ "`platform`, `type`) VALUES ('"+name+"', '"+price+"', '"+quantity+"', '"+description+"', "
 						+ "'"+imgURL+"', '"+platform+"', '"+type+"');";
+		return executeSQLStatement(sql);
+	}
+	
+	public boolean add(DomainObject obj)
+	{
+		Item item = (Item) obj;
+		String sql = "INSERT INTO `soen387k`.`Item` (`name`, `price`, `quantity`, `description`, `imgURL`, "
+				+ "`platform`, `type`) VALUES ('"+item.getName()+"', '"+item.getPrice()+"', '"+item.getQuantity()+"', '"+item.getDescription()+"', "
+						+ "'"+item.getImgUrl()+"', '"+item.getPlatform()+"', '"+item.getType()+"');";
 		return executeSQLStatement(sql);
 	}
 	
@@ -51,4 +63,5 @@ public class ItemDAO extends DAO<Item>
 						+ "'"+item.getImgUrl()+"', '"+item.getPlatform()+"', '"+item.getType()+"');";
 		return executeSQLStatement(sql);
 	}
+
 }
