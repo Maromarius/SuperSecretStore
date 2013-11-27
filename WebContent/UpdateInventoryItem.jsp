@@ -110,27 +110,21 @@
             </tr>
             <tr>
                 <td>Platform</td>
-                <td><select id="sel" name="itemPlatform" >          
-                		<option value="XBox" <% if (item.getPlatform().equals("Xbox")) out.print("selected"); %>>XBox</option>
-						<option value="XBox 360" <% if (item.getPlatform().equals("Xbox 360")) out.print("selected"); %>>XBox 360</option>
-						<option value="XBox One" <% if (item.getPlatform().equals("Xbox One")) out.print("selected"); %>>XBox One</option>
-						<option value="PC" <% if (item.getPlatform().equals("PC")) out.print("selected"); %>>PC</option>
-						<option value="Playstation" <% if (item.getPlatform().equals("Playstation 1")) out.print("selected"); %>>Playstation</option>
-						<option value="Playstation 2" <% if (item.getPlatform().equals("Playstation 2")) out.print("selected"); %>>Playstation 2</option>
-						<option value="Playstation 3" <% if (item.getPlatform().equals("Playstation 3")) out.print("selected"); %>>Playstation 3</option>
-						<option value="Playstation 4" <% if (item.getPlatform().equals("Playstation 4")) out.print("selected"); %>>Playstation 4</option>
-						<option value="Wii" <% if (item.getPlatform().equals("Wii")) out.print("selected"); %>>Wii</option>
-						<option value="Wii U" <% if (item.getPlatform().equals("Wii U")) out.print("selected"); %>>Wii U</option>
-						<option value="Gamecube" <% if (item.getPlatform().equals("Gamecube")) out.print("selected"); %>>Gamecube</option>
+                <td><select id="sel" name="itemPlatform" >  
+                <% String platformOptions[] = {"XBox", "XBox 360", "XBox One", "PC", "Playstation", "Playstation 2", "Playstation 3", "Playstation 4", "Wii", "Wii U", "Gamecube"};        
+                for (String s : platformOptions)		
+                	out.print("<option value=\"" + s +"\" "+ (s.equals(item.getPlatform())?"selected":"") +">"+ s +"</option>");
+				%>		
 					</select>
 				</td>
             </tr>
             <tr>
                 <td>Type :</td>
                 <td><select name="itemType" >
-		                <option value="Game" <% if (item.getType().equals("Game")) out.print("selected"); %>>Game</option>
-		                <option value="Console"<% if (item.getType().equals("Console")) out.print("selected"); %>>Console</option>
-		                <option value="Accessory"<% if (item.getType().equals("Accessory")) out.print("selected"); %>>Accessory</option>
+		        <% String typeOptions[] = {"Game", "Console", "Accessory"};        
+                	for (String s : typeOptions)		
+                		out.print("<option value=\"" + s +"\" "+ (s.equals(item.getPlatform())?"selected":"") +">"+ s +"</option>");
+				%>	
                 </select></td>
             </tr>
             <tr>
