@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="com.gamestore.model.Order"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -70,64 +72,58 @@
 		
 		
 		<div id="items">
-		<form action="UpdateOrdersServlet" method="POST">
+		
 		<table>
 			<tr>
-				<th width="100" align="left">Order #</th>
-				<th width="100" align="left">Client ID</th>
-				<th width="100" align="left">Number of Items</th>
-				<th width="100" align="left">Total</th>
+			
+				<th width="80" align="left">Order ID</th>
+				<th width="500" align="left">User ID</th>
+				<th width="80" align="left">Total</th>
 				<th width="100" align="left">Status</th>
-				<th width="100" align="left">Manage</th>
+				<th width="80" align="left" colspan="2" align="center">Delete / Update</th>
+				<th></th>
 			</tr>
 			
 			<%
-				Order[] orders = (Order[]) session.getAttribute("Orders");
+				ArrayList<Order> orders = (ArrayList<Order>) session.getAttribute("allOrders");
 				if(orders != null)
 				{
-					for(int i = 0 ; i < orders.length; i++) {
-				    	Order item = orders[i];
+					for(int i = 0 ; i < orders.size(); i++) {
+				    	Order order = orders.get(i);
 				    %>
-				    
-		    <tr>
-				<td align="left">0928403</td>
-				<td>16541</td>
-				<td>5</td>
-				<td>$20.00</td>
-				<td>Shipped</td>
-				<td></td>
-			</tr>
+				 
+				    <tr>
+						<td align="left"><%=order.getID()%></td>
+						<td><%=order.getUserID() %></td>
+						<td><%=order.getTotal() %></td>
+						<td>$<%=order.getStatus() %></td>
+						<td>
+							<form action="DeleteOrderServlet" method="post">
+								<input type="submit" value="Delete">
+								<input type="hidden" name=OrderIDtoDelete value=<%=order.getID()%>>
+							</form>
+							</td>
+						<td></td>
+					</tr>
+			
 			<%
 					}
 				}
 			%>
-			<tr>
-				<td align="left">0928403</td>
-				<td>16541</td>
-				<td>5</td>
-				<td>$20.00</td>
-				<td>Shipped</td>
-				<td>
-					<input type="button" value="Delete">
-					<input type="button" value="Update">
-				</td>
-			</tr>
-			<tr>
-				<td><input class="addtocartbutton" type="submit" onclick="UpdateCartServlet" value="Update Cart" /></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><input class="addtocartbutton" type="submit" onclick="CheckoutServlet" value="Checkout" /></td>
-			</tr>
-		
+			
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><form action="CommitOrderChangesServlet" method="POST">
+							<input class="addtocartbutton" type="submit" value="Commit" />
+						</form></td>
+				</tr>
+			
 		</table>
-		</form>		
-
-
-
-
-
+		
 		</div>
 		
 		<!-- footer -->
