@@ -32,11 +32,11 @@ public class UpdateItemServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("UpdateInventoryItem.jsp");
 		//ItemContainer.getInstance().update(itemIdToUpdate);
 		int itemIdToUpdate = Integer.parseInt(request.getParameter("itemID"));
-		Item i = ItemDAO.getInstance().find(itemIdToUpdate);
+		Item i = ItemContainer.getInstance().Get(itemIdToUpdate);
 		request.getSession(true).setAttribute("itemToUpdate", i);
+		response.sendRedirect("UpdateInventoryItem.jsp");
 	}
 
 	/**
@@ -53,8 +53,9 @@ public class UpdateItemServlet extends HttpServlet {
 		item.setPlatform(request.getParameter("itemPlatform"));
 		item.setType(request.getParameter("itemType"));
 		ItemContainer.getInstance().Update(item);
-		ItemDAO.getInstance().update(item.getID(), item.getName(), item.getPrice(), item.getQuantity(), 
-				item.getDescription(), item.getImgUrl(), item.getPlatform(), item.getType());
+		
+		//obsolete, we'll do this in the commit button section.
+		//ItemDAO.getInstance().update(item.getID(), item.getName(), item.getPrice(), item.getQuantity(), item.getDescription(), item.getImgUrl(), item.getPlatform(), item.getType());
 		request.getSession(true).setAttribute("itemToUpdate", item);
 		//item = null;
 		response.sendRedirect("ManageInventory.jsp");

@@ -42,11 +42,12 @@ public class AddItemServlet extends HttpServlet {
 		item.setPlatform(request.getParameter("itemPlatform"));
 		item.setType(request.getParameter("itemType"));
 		ItemContainer.getInstance().Add(item);
-		ItemDAO.getInstance().addbyObject(item);
+		
+		//Obselete, UOW will take care upon commit
+		
+		//ItemDAO.getInstance().addbyObject(item);
 		item =null;
 		response.sendRedirect("ManageInventory.jsp");
-		
-		
 	}
 
 	/**
