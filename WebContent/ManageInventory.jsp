@@ -81,7 +81,7 @@
 				<th width="500" align="left">Item Description</th>
 				<th width="80" align="left">Quantity</th>
 				<th width="100" align="left">Price/Unit</th>
-				<th width="80" align="left" colspan="2" align="center">Edit</th>
+				<th width="80" align="left" colspan="2" align="center">Delete / Update</th>
 				<th></th>
 			</tr>
 			
@@ -104,7 +104,7 @@
 							</form>
 							</td>
 						<td>
-							<form action="" method="post">	
+							<form action="UpdateItemServlet" method="get">	
 								<input type="submit" value="Update">
 								<input type="hidden" name="itemID" value=<%=item.getID()%>>
 							</form>
