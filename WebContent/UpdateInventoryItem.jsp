@@ -130,7 +130,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <input  type="submit" value="Update Item">             
+                    <input  type="submit" value="Update Item" class="addtocartbutton" >             
                 </td>
             </tr>
         </table>

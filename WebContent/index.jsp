@@ -99,7 +99,7 @@
 				<p></p>
 				<p>Please login here.</p>
 				<p>
-					<input type="submit" value="Submit" />
+					<input type="submit" value="Submit" class="addtocartbutton" />
 				</p>
 				 </form>
 				<p style="color:red;">

@@ -136,7 +136,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <input  type="submit" value="Add Item">             
+                    <input  type="submit" value="Add Item" class="addtocartbutton" >             
                 </td>
             </tr>
         </table>
